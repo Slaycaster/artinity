@@ -56,11 +56,20 @@ class GroupController extends Controller
 
             $user       =   User::find($request->int_owner_id_fk);
 
+            //check and upload the file
+            if($request->hasFile('str_photo_dir')){
+                $filename = rand(1000,100000)."-".$request->file('str_photo_dir')->getClientOriginalName();
+                $filepath = "files/";
+                $request->file('str_photo_dir')->move($filepath, $filename);
+                $filepath = $filepath.$filename;
+            }
+
             $group = $user->owned_groups()
                 ->create([
                     'str_group_name'    =>  $request->str_group_name,
                     'int_owner_id_fk'   =>  $request->int_owner_id_fk,
-                    'str_group_desc'     =>  $request->str_group_desc
+                    'str_group_desc'    =>  $request->str_group_desc,
+                    "str_photo_dir"     =>  $filepath
                     ]);
 
             //save himself as a member

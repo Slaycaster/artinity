@@ -11,3 +11,10 @@ Request status:
 	2 - Read
 	3 - Accepted
 	4 - Declined
+
+Post Types:
+	1 - Texts
+	2 - Music
+	3 - Photo
+	4 - Video
+	5 - Porn (jk lang daw)

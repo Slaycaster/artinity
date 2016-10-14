@@ -61,10 +61,19 @@ class CollabController extends Controller
 
             }//end if
 
+            //check and upload the file
+            if($request->hasFile('str_attachment_dir')){
+                $filename = rand(1000,100000)."-".$request->file('str_attachment_dir')->getClientOriginalName();
+                $filepath = "files/";
+                $request->file('str_attachment_dir')->move($filepath, $filename);
+                $filepath = $filepath.$filename;
+            }
+
             $collab         =   $user->owned_collabs()->create([
                 'str_collab_name'       =>  $request->str_collab_name,
                 'str_collab_desc'       =>  $request->str_collab_desc,
-                'int_status'            =>  1
+                'int_status'            =>  1,
+                'str_attachment_dir'    =>  $filepath
                 ]);
 
             $error = $collab->addMember($user->intUserId, 1);
