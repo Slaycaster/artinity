@@ -1,10 +1,10 @@
 <ion-view title="Requests" id="page4">
-    <ion-content padding="true" class="has-header">
+    <ion-content padding="true" class="has-header" ng-repeat="request in requests">
         <ion-list id="requests-list11">
             <ion-item class="item-avatar" id="requests-list-item24">
                 <img src="img/MyzGGVCSRlew2Kjymvkw_WIN_20160822_12_05_49_Pro.jpg">
-                <h2>Ghed Perona</h2>
-                <p style="white-space:normal;">Hey man! I kinda like your works. Are you interested with a collab work?</p>
+                <h2 ng-bind="request.sender.str_first_name + ' ' + request.sender.str_middle_name + ' ' + request.sender.str_last_name"></h2>
+                <p style="white-space:normal;" ng-bind="request.str_collab_request_message">---</p>
             </ion-item>
         </ion-list>
         <div class="row">
