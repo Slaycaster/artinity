@@ -13,17 +13,18 @@
                 <img src="img/YcCtwOh5TW6FTWBtuoza_14051555_10154020001663090_4991434035055011791_n.jpg">
                 <h2>Joyce Pring</h2>
                 <p>with Han Ainan</p>
-                <i class="icon ion-android-person-add" ng-click="showPopup(123)"></i> 
+                <i class="icon ion-fork-repo" ng-click="showPopup(123)"></i> 
             </ion-item>
             <div class=" item item-image">
                 <img src="img/jBEB56O3SyCRmAU05TIl_5th.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
             </div>
             <div class="item item-body" id="home-list-item-container6">
                 <div id="home-markdown8" style="color:#000000;">
-                    <p style="margin-top:0px; font-weight: bold;" ng-show="hasComment">1 comment</p>
+                    <p style="margin-top:0px; font-weight: bold; color: #387ef5;" ng-show="!hasComment" ng-click="hasComment=true">1 comment</p>
+                    <p style="margin-top:0px; font-weight: bold; color: #e42112" ng-show="hasComment" ng-click="hasComment=false">Hide comment</p>
                 </div>
             </div>
-            <ion-item class="item-avatar-left item-icon-right balanced" id="home-list-item13">
+            <ion-item class="item-avatar-left item-icon-right balanced" id="home-list-item13" ng-show="hasComment">
                  <img src="img/YcCtwOh5TW6FTWBtuoza_14051555_10154020001663090_4991434035055011791_n.jpg">
                 <p>Beautiful work!</p>
             </ion-item>
@@ -41,7 +42,7 @@
                 <img src="img/YcCtwOh5TW6FTWBtuoza_14051555_10154020001663090_4991434035055011791_n.jpg">
                 <h2>Joyce Pring</h2>
                 <p>with Han Ainan</p>
-                <i class="icon ion-android-person-add" ng-click="showPopup(123)"></i> 
+                <i class="icon ion-fork-repo" ng-click="showPopup(123)"></i> 
             </ion-item>
             <div class=" item item-image">
                 <img src="img/jBEB56O3SyCRmAU05TIl_5th.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
