@@ -10,9 +10,13 @@ class CollabRequest extends Model
 {
 	public $primaryKey 		=	'int_collab_request_id';
 	public $fillable 		=	[
-		'int_sender_id_fk',
 		'int_collab_id_fk',
+		'int_sender_type',
+		'int_sender_id_fk',
+		'int_group_sender_id_fk',
+		'int_receiver_type',
 		'int_receiver_id_fk',
+		'int_group_receiver_id_fk',
 		'str_collab_request_message',
 		'int_status',
 		'int_request_type'
@@ -24,13 +28,13 @@ class CollabRequest extends Model
 
 	public function sender(){
 
-		return $this->belongsTo('App\ApiModel\v1\User', 'int_sender_id_fk', 'int_user_id');
+		return ($this->int_sender_type == 1)? $this->belongsTo('App\ApiModel\v1\User', 'int_sender_id_fk', 'int_user_id') : $this->belongsTo('App\ApiModel\v1\Group', 'int_group_sender_id_fk', 'int_group_id');
 
 	}//end function
 
 	public function receiver(){
 
-		return $this->belongsTo('App\ApiModel\v1\User', 'int_receiver_id_fk', 'int_user_id');
+		return ($this->int_receiver_type == 1)? $this->belongsTo('App\ApiModel\v1\User', 'int_receiver_id_fk', 'int_user_id') : $this->belongsTo('App\ApiModel\v1\Group', 'int_group_receiver_id_fk', 'int_group_id');
 
 	}//end function
 

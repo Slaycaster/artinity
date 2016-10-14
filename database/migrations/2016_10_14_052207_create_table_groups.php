@@ -22,6 +22,8 @@ class CreateTableGroups extends Migration
                 ->unsigned();
             $table->text('str_group_desc')
                 ->nullable();
+            $table->text('str_photo_dir')
+                ->nullable();
             $table->timestamps();
 
             $table->unique(['str_group_name', 'int_owner_id_fk'], 'group_owner_fk');

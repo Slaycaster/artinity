@@ -72,5 +72,18 @@ angular.module('app.services', [])
         });
 
         return deferred.promise;
+    };
+
+    this.getInvites = function() {
+        var deferred = $q.defer();
+
+        $http.get(appConfig.baseUrl + 'api/v1/users/' + appConfig.userId + '/invites')
+            .then(function(response) {
+                deferred.resolve(response.data.inviteList);
+            }, function(error) {
+                deferred.reject(error.data);
+            });
+
+        return deferred.promise;
     }
 }]);

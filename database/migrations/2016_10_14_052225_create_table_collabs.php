@@ -22,6 +22,8 @@ class CreateTableCollabs extends Migration
             $table->integer('int_status');
             $table->integer('int_owner_id_fk')
                 ->unsigned();
+            $table->text('str_photo_dir')
+                ->nullable();
             $table->timestamps();
 
             $table->foreign('int_owner_id_fk')
