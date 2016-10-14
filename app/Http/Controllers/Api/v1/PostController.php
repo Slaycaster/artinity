@@ -20,6 +20,8 @@ class PostController extends Controller
     	try{
 
     		DB::beginTransaction();
+            $filepath           =   null;
+            
     		$collab 		=	Collab::find($collabId);
     		
     		$boolGroup		=	false;
