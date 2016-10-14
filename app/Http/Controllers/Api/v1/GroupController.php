@@ -16,7 +16,13 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        return response()
+            ->json(
+                [
+                    'groupList'      =>  Group::all()
+                ],
+                200
+            );
     }
 
     /**
@@ -24,9 +30,55 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        try{
+
+            DB::beginTransaction();
+
+            $group = Group::create([
+                'str_group_name'    =>  $request->str_first_name,
+                'int_owner_id_fk'   =>  $request->str_middle_name,
+                'str_group_desc'     =>  $request->str_last_name
+                ]);
+
+            if($request->group_members){
+
+                //tentative(id)
+                foreach ($request->group_members as $key => $group_member) {
+
+                    $group->members()
+                        ->attach($group_member);
+
+                }
+
+            }
+            else{
+                throw new Exception('Group members not set');
+            }
+
+            DB::commit();
+
+            return response()
+                ->json(
+                    [
+                        'message'       =>  'Group is successfully created.'
+                    ],
+                    200
+                    );
+
+        }catch(Exception $e){
+
+            DB::rollBack();
+            return response()
+                ->json(
+                    [
+                        'message'       =>  $e->getMessage()
+                    ],
+                    500
+                );
+
+        }//catch    
     }
 
     /**
@@ -46,9 +98,9 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($groupName)
     {
-        //
+        return Group::getGroupInfo($groupName);
     }
 
     /**
