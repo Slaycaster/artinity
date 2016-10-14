@@ -25,9 +25,9 @@ class Group extends Model
 
     }//end function
 
-    public static function getGroupInfo($groupName){
-        return Group::where('str_group_name')
-            ->select('int_group_id', 'str_group_name', 'int_owner_id_fk', 'str_group_desc');
+    public static function getGroupInfo($id){
+        return Group::where('int_group_id', $id)
+            ->select('int_group_id', 'str_group_name', 'int_owner_id_fk', 'str_group_desc')->first();
     }
 
 }

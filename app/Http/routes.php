@@ -25,10 +25,18 @@ Route::group(['prefix' => 'api'], function(){
 
 	Route::group(['prefix' => 'v1'], function(){
 
+		Route::group(['prefix' => 'collabs'], function(){
+
+			Route::post('{id}/members', 'Api\v1\CollabController@addMember');
+			Route::get('{id}/members', 'Api\v1\CollabController@getMember');
+
+		});
+
+		Route::resource('collabs', 'Api\v1\CollabController');
 		Route::resource('users', 'Api\v1\UserController');
 
 		Route::group(['prefix' => 'groups'], function(){
-			Route::get('{name}/members', 'Api\v1\GroupController@getMembers');
+			Route::get('{id}/members', 'Api\v1\GroupController@getMembers');
 		});
 
 		Route::resource('groups', 'Api\v1\GroupController');

@@ -58,6 +58,7 @@ class UserController extends Controller
                 'str_last_name'     =>  $request->str_last_name,
                 'date_birth'        =>  Carbon::parse($request->date_birth),
                 'str_email'         =>  $request->str_email,
+                'int_gender'        =>  $request->int_gender,
                 'str_password'      =>  bcrypt($request->str_password),
                 'dbl_location_lat'  =>  $request->dbl_location_lat,
                 'dbl_location_long' =>  $request->dbl_location_long

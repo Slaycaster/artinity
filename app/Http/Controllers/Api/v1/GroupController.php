@@ -112,9 +112,9 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($groupName)
+    public function show($id)
     {
-        return Group::getGroupInfo($groupName);
+        return Group::getGroupInfo($id);
     }
 
     /**
@@ -151,8 +151,8 @@ class GroupController extends Controller
         //
     }
 
-    public function getMembers($name){
-        return Group::where('str_group_name', $name)->first()
-            ->members();
+    public function getMembers($id){
+        return Group::where('int_group_id', $id)->first()
+            ->members()->get();
     }
 }
