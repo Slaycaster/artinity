@@ -27,6 +27,10 @@ Route::group(['prefix' => 'api'], function(){
 
 		Route::resource('users', 'Api\v1\UserController');
 
+		Route::group(['prefix' => 'groups'], function(){
+			Route::get('{name}/members', 'Api\v1\GroupController@getMembers');
+		});
+
 		Route::resource('groups', 'Api\v1\GroupController');
 
 		Route::post('auth/login', 'Api\v1\LoginController@login');

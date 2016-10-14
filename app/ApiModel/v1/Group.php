@@ -29,4 +29,5 @@ class Group extends Model
         return Group::where('str_group_name')
             ->select('int_group_id', 'str_group_name', 'int_owner_id_fk', 'str_group_desc');
     }
+
 }
