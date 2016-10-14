@@ -38,6 +38,12 @@ class Collab extends Model
 
     }//end function
 
+    public function received_requests(){
+
+        return $this->hasMany('App\ApiModel\v1\CollabRequest', 'int_collab_id_fk', 'int_collab_id');
+
+    }//end function
+
     public function addMember($intId, $intType){
 
         if ($intType == 1){
