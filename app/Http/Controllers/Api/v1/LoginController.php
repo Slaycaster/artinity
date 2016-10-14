@@ -13,19 +13,33 @@ use App\ApiModel\v1\User;
 
 use Exception;
 
+use Hash;
+
 class LoginController extends Controller
 {
      public function login(Request $request){
     	try{
 
-    		$user = User::where('str_email', $request->email)->where('str_password', bcrypt($request->password))->first();
+    		$user = User::where('str_email', $request->str_email)->first();
 
 	    	if(count($user) > 0){
-	    		$request->session()->put('userID', $user->int_user_id);
+
+	    		if (Hash::check($request->str_password, $user->str_password))
+				{
+				    $request->session()->put('userID', $user->int_user_id);
+				}
+				else{
+					//an error occured
+					throw new Exception('User does not exist');
+				}
+
 	    	}
+
 	    	else{
+
 	    		//an error occured
 				throw new Exception('User does not exist');
+
 	    	}
 
 	    	return response()

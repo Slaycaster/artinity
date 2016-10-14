@@ -52,6 +52,12 @@ class User extends Model
 
     }//end function
 
+    public function owned_groups(){
+
+        return $this->hasMany('App\ApiModel\v1\Group', 'int_owner_id_fk', 'int_user_id');
+
+    }//end function
+
     public function groups(){
 
         return $this->belongsToMany('App\ApiModel\v1\Group', 'group_users', 'int_user_id_fk', 'int_group_id_fk');
