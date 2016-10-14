@@ -10,6 +10,8 @@ function ($scope, $stateParams, $state, UserService) {
 			str_email: $scope.userForm.email,
 			str_password: $scope.userForm.password
 		}).then(function(response) {
+			appConfig.userId = response.userId;
+
 			$state.go('tabsController.home');
 		}, function(errorResponse) {
 			console.log(errorResponse);
