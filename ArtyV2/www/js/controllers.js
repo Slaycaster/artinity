@@ -79,10 +79,10 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('collabItemsCtrl', ['$scope', '$stateParams', '$ionicModal',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('collabItemsCtrl', ['$scope', '$stateParams', '$ionicModal', '$cordovaFileTransfer',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal) {
+function ($scope, $stateParams, $ionicModal, $cordovaFileTransfer) {
 
 	$ionicModal.fromTemplateUrl('templates/modal-addItem.html', {
 	   scope: $scope,
@@ -108,6 +108,22 @@ function ($scope, $stateParams, $ionicModal) {
 	 $scope.$on('modal.removed', function() {
 	   // Execute action
 	 });
+
+	 $scope.upload = function() {
+	    var options = {
+	        fileKey: "avatar",
+	        fileName: "image.png",
+	        chunkedMode: false,
+	        mimeType: "image/png"
+	    };
+	    $cordovaFileTransfer.upload("http://192.168.56.1:1337/file/upload", "/android_asset/www/img/ionic.png", options).then(function(result) {
+	        console.log("SUCCESS: " + JSON.stringify(result.response));
+	    }, function(err) {
+	        console.log("ERROR: " + JSON.stringify(err));
+	    }, function (progress) {
+	        // constant progress updates
+	    });
+    };
 
 }])
  
