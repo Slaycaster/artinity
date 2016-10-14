@@ -11,4 +11,8 @@ function ($scope, $stateParams, InviteService) {
 		}, function(responseError) {
 			console.log(responseError);
 		});
+
+	$scope.acceptOnClick = function() {
+		console.log('Wahahahaha');
+	}
 }]);
