@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
                 ->unique();
             $table->string('str_password');
             $table->integer('int_gender');
+            $table->text('str_photo_dir')
+                ->nullable();
             $table->rememberToken();
             $table->timestamps();
 

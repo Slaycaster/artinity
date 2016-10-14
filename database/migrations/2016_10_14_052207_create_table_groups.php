@@ -20,7 +20,10 @@ class CreateTableGroups extends Migration
                 ->unique();
             $table->integer('int_owner_id_fk')
                 ->unsigned();
-            $table->text('str_group_desc');
+            $table->text('str_group_desc')
+                ->nullable();
+            $table->text('str_photo_dir')
+                ->nullable();
             $table->timestamps();
 
             $table->unique(['str_group_name', 'int_owner_id_fk'], 'group_owner_fk');

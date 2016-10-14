@@ -1,0 +1,76 @@
+User:
+{
+	"str_first_name"	:	"Ken",
+	"str_middle_name"	:	"Malit",
+	"str_last_name"		:	"Layug",
+	"date_birth"		:	"November 8, 1996",
+	"str_email"			:	"ken_layug@yahoo.com",
+	"int_gender"		:	1,
+	"dbl_location_long"	:	5,
+	"dbl_location_lat"	:	3,
+	"str_password"		:	"kenlayug1",
+	"interestList"		:	[
+		{
+			"strInterestName"	:	"Music",
+			"genreList"			:	[
+				"Rock", "Pop"
+			],
+			"favoriteList"		:	[
+				"Wataman"
+			]
+		}
+	]
+}
+{
+	"str_first_name"	:	"Ghed",
+	"str_middle_name"	:	"Roxas",
+	"str_last_name"		:	"Perona",
+	"date_birth"		:	"July 12, 1996",
+	"str_email"			:	"ghed_perona@yahoo.com",
+	"int_gender"		:	1,
+	"dbl_location_long"	:	5,
+	"dbl_location_lat"	:	3,
+	"str_password"		:	"ghedpogi",
+	"interestList"		:	[
+		{
+			"strInterestName"	:	"Music",
+			"genreList"			:	[
+				"Rock", "Pop"
+			],
+			"favoriteList"		:	[
+				"Wataman"
+			]
+		}
+	]
+}
+
+Group:
+{
+	"str_group_name" : "Maniacs",
+	"int_owner_id_fk" : "1",
+	"str_group_desc" : "We are not maniacs!",
+	"group_members" : ["2"]
+}
+
+Collab:
+{
+	"int_user_id"		:	1,
+	"str_collab_name"	:	"Collab for Fake Taxi v1.0",
+	"str_collab_desc"	:	"For creating our very own Filipino version of Fake Taxi here in the Philippines."
+}
+
+Collab-Add Member
+{
+	"listToAdd"			:	[
+		{
+			"intId"				:	2,
+			"intMemberType"		:	1
+		}
+	]
+}
+
+Invite:
+{
+	"int_collab_id"				:	null,
+	"str_collab_request_message"	:	"Hello, join me!"
+}

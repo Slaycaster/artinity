@@ -1,0 +1,13 @@
+Request types:
+	1 - Invite
+	2 - Request
+
+Request Sender and Receiver
+	1 - User
+	2 - Group
+
+Request status:
+	1 - Unread
+	2 - Read
+	3 - Accepted
+	4 - Declined
