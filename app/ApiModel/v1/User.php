@@ -14,6 +14,7 @@ class User extends Model
 {
     public $primaryKey 		=	'int_user_id';
     public $fillable 		=	[
+        'int_user_id',
     	'str_first_name',
     	'str_middle_name',
     	'str_last_name',
@@ -26,7 +27,7 @@ class User extends Model
     ];
 
     protected $hidden = [
-        'str_password', 'remember_token', 'int_user_id'
+        'str_password', 'remember_token'
     ];
 
     public function skills(){
@@ -105,6 +106,7 @@ class User extends Model
     public static function getAllUsers(){
 
     	$userList 		=	User::select(
+            'int_user_id',
     		'str_first_name',
     		'str_middle_name',
     		'str_last_name',

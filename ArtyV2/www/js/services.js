@@ -5,7 +5,7 @@ angular.module('app.services', [])
 }])
 
 .service('LocationService', [function() {
-	var cityNameDetails = 'Pakshet';
+	var cityNameDetails;
 
 	this.getCityNames = function(inputName) {
 		var input = /** @type {!HTMLInputElement} */(
@@ -36,6 +36,19 @@ angular.module('app.services', [])
         }, function(error) {
             deferred.reject(error.data.message);
         });
+
+        return deferred.promise;
+    }
+
+    this.getUsers = function() {
+        var deferred = $q.defer();
+
+        $http.get(appConfig.baseUrl + 'api/v1/users')
+            .then(function(response) {
+                deferred.resolve(response.data.userList);
+            }, function(error) {
+                deferred.reject(error.data.message);
+            });
 
         return deferred.promise;
     }
