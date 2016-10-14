@@ -23,8 +23,8 @@ Route::group(['prefix' => 'api'], function(){
 
 		Route::group(['prefix' => 'collabs'], function(){
 
-			Route::post('{name}/members', 'Api\v1\CollabController@addMember');
-			Route::get('{name}/members', 'Api\v1\CollabController@getMember');
+			Route::post('{id}/members', 'Api\v1\CollabController@addMember');
+			Route::get('{id}/members', 'Api\v1\CollabController@getMember');
 
 		});
 

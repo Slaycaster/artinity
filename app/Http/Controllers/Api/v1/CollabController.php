@@ -144,10 +144,9 @@ class CollabController extends Controller
         //
     }
 
-    public function getMember($name){
+    public function getMember($id){
 
-        $collab         =   Collab::where('str_collab_name', 'LIKE', $name)
-            ->first();
+        $collab         =   Collab::find($id)
 
         if (!$collab){
 
@@ -175,13 +174,13 @@ class CollabController extends Controller
 
     }//end function
 
-    public function addMember($name, Request $request){
+    public function addMember($id, Request $request){
 
         try{
 
             DB::beginTransaction();
             //check if collab exists
-            $collab         =   Collab::where('str_collab_name', '=', $name)
+            $collab         =   Collab::where('str_collab_name', '=', $id)
                 ->first();
 
             if (!$collab){
