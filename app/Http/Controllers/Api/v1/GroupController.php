@@ -32,6 +32,17 @@ class GroupController extends Controller
      */
     public function create(Request $request)
     {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         try{
 
             DB::beginTransaction();
@@ -82,17 +93,6 @@ class GroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -135,5 +135,10 @@ class GroupController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getMembers($name){
+        return Group::where('str_group_name', $name)->first()
+            ->members();
     }
 }
