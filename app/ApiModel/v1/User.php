@@ -311,4 +311,17 @@ class User extends Model
         return $invite;
 
     }//end function
+
+    public function getReceivedRequest($intRequestId){
+
+        $invite         =   $this->received_requests()
+            ->where('int_request_type', '=', 2)
+            ->where('int_status', '!=', 4)
+            ->where('int_status', '!=', 3)
+            ->where('int_collab_request_id', '=', $intRequestId)
+            ->first();
+
+        return $invite;
+
+    }//end function
 }

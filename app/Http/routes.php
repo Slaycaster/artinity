@@ -40,6 +40,7 @@ Route::group(['prefix' => 'api'], function(){
 			Route::post('{userId}/invites/{requestId}/accept', 'Api\v1\InviteController@acceptInvite');
 
 			Route::post('{senderId}/requests/{receiverId}', 'Api\v1\RequestController@requestCollab');
+			Route::post('{userId}/requests/{requestId}/accept', 'Api\v1\RequestController@acceptRequest');
 
 		});
 

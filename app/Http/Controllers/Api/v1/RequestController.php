@@ -51,4 +51,43 @@ class RequestController extends Controller
 
         }//catch
     }
+
+    public function acceptRequest($userId, $requestId){
+        try{
+
+            DB::beginTransaction();
+
+            $receivedRequest        =   User::find($userId)
+                ->getReceivedRequest($requestId);
+
+            $result                 =   $receivedRequest->acceptRequest();
+
+            if (!$result){
+
+                throw new Exception($result->getMessage());
+
+            }//end if
+
+            DB::commit();
+            return response()
+                ->json(
+                    [
+                        'message'       =>  'Invite accepted successfully.'
+                    ],
+                    201
+                );
+
+        }catch(Exception $e){
+
+            DB::rollBack();
+            return response()
+                ->json(
+                    [
+                        'message'   =>  $e->getMessage()
+                    ],
+                    500
+                );
+
+        }//end catch
+    }
 }
