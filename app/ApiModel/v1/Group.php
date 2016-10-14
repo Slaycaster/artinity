@@ -80,4 +80,36 @@ class Group extends Model
 
     }//end function
 
+
+    public function getReceivedRequests(){
+
+        $inviteList         =   $this->received_requests()
+            ->where('int_request_type', '=', 2)
+            ->get();
+
+        foreach($inviteList as $invite){
+
+            $invite->sender;
+            $invite->collab;
+            $invite->str_status         =   $invite->str_status;
+
+        }//end foreach
+
+        return $inviteList;
+
+    }//end function
+
+    public function getReceivedRequest($intRequestId){
+
+        $invite         =   $this->received_requests()
+            ->where('int_request_type', '=', 2)
+            ->where('int_status', '!=', 4)
+            ->where('int_status', '!=', 3)
+            ->where('int_collab_request_id', '=', $intRequestId)
+            ->first();
+
+        return $invite;
+
+    }//end function
+
 }

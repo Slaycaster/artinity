@@ -242,7 +242,33 @@ class InviteController extends Controller
 
     }//end function
 
-    public function getAllGroupInvites($groupId){
+    public function getAllGroupInvites($groupId, $requestId){
+
+        return response()
+            ->json(
+                [
+                    'inviteList'        =>  Group::find($groupId)
+                        ->getReceivedInvites()
+                ],
+                200
+            );
+
+    }//end function
+
+    public function getInvite($userId){
+
+        return response()
+            ->json(
+                [
+                    'inviteList'        =>  User::find($userId)
+                        ->getReceivedInvites()
+                ],
+                200
+            );
+
+    }//end function
+
+    public function getGroupInvite($groupId, $requestId){
 
         return response()
             ->json(
