@@ -26,4 +26,11 @@ class Post extends Model
     	return $this->hasMany('App\ApiModel\v1\Comment', 'int_post_id_fk', 'int_post_id');
 
     }//end function
+
+    public function user(){
+
+        return $this->hasOne('App\ApiModel\v1\Users', 'int_user_id', 'int_user_id_fk');
+
+    }//end function
+    
 }

@@ -73,6 +73,7 @@ class Group extends Model
 
     }//end function
 
+
     public function getReceivedRequests(){
 
         $inviteList         =   $this->received_requests()
