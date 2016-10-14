@@ -278,4 +278,22 @@ class User extends Model
         }//end catch
 
     }//end function
+
+    public function getReceivedInvites(){
+
+        $inviteList         =   $this->received_requests()
+            ->where('int_request_type', '=', 1)
+            ->get();
+
+        foreach($inviteList as $invite){
+
+            $invite->sender;
+            $invite->collab;
+            $invite->str_status         =   $invite->str_status;
+
+        }//end foreach
+
+        return $inviteList;
+
+    }//end function
 }
