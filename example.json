@@ -64,3 +64,9 @@ Invite:
 	"int_collab_id"				:	null,
 	"str_collab_request_message"	:	"Hello, join me!"
 }
+
+Post:
+{
+	"str_post_message"		:	"Habadu...",
+	"int_post_type"			:	1
+}

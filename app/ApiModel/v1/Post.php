@@ -9,7 +9,8 @@ class Post extends Model
     public $primaryKey 		=	'int_post_id';
     public $fillable		=	[
     	'int_collab_id_fk',
-    	'int_collab_member_id_fk',
+        'int_user_id_fk',
+        'int_group_id_fk',
     	'str_post_message',
     	'int_post_type',
     	'str_attachment_dir'
@@ -27,9 +28,9 @@ class Post extends Model
 
     }//end function
 
-    public function user(){
+    public function member(){
 
-        return $this->hasOne('App\ApiModel\v1\User', 'int_user_id', 'int_user_id_fk');
+        return $this->int_user_id_fk? $this->belongsTo('App\ApiModel\v1\User', 'int_user_id_fk', 'int_user_id') : $this->belongsTo('App\ApiModel\v1\Group', 'int_group_id_fk', 'int_group_id');
 
     }//end function
 
