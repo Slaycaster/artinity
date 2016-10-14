@@ -74,7 +74,8 @@ class User extends Model
 
     public function collabs(){
 
-        return $this->belongsToMany('App\ApiModel\v1\Collab', 'collabs_members', 'int_user_id_fk', 'int_collab_id_fk');
+        return $this->belongsToMany('App\ApiModel\v1\Collab', 'collabs_members', 'int_user_id_fk', 'int_collab_id_fk')
+            ->withPivot('bool_is_admin', 'int_collab_member_id');
 
     }//end function
 
@@ -255,7 +256,7 @@ class User extends Model
 
     }//end function
 
-    public function createCollab(){
+    public function createCollab($groupId){
 
         try{
 
@@ -267,7 +268,15 @@ class User extends Model
                     'int_status'            =>  1
                     ]);
 
-            $collab->addMember($this->int_user_id, 1);
+            if ($groupId){
+
+                $collab->addMember($groupId, 2);
+
+            }else{
+
+                $collab->addMember($this->int_user_id, 1);
+
+            }//end else
 
             DB::commit();
             return $collab->int_collab_id;
@@ -306,6 +315,37 @@ class User extends Model
             ->where('int_status', '!=', 4)
             ->where('int_status', '!=', 3)
             ->where('int_collab_request_id', '=', $intInviteId)
+            ->first();
+
+        return $invite;
+
+    }//end function
+
+    public function getReceivedRequests(){
+
+        $inviteList         =   $this->received_requests()
+            ->where('int_request_type', '=', 2)
+            ->get();
+
+        foreach($inviteList as $invite){
+
+            $invite->sender;
+            $invite->collab;
+            $invite->str_status         =   $invite->str_status;
+
+        }//end foreach
+
+        return $inviteList;
+
+    }//end function
+
+    public function getReceivedRequest($intRequestId){
+
+        $invite         =   $this->received_requests()
+            ->where('int_request_type', '=', 2)
+            ->where('int_status', '!=', 4)
+            ->where('int_status', '!=', 3)
+            ->where('int_collab_request_id', '=', $intRequestId)
             ->first();
 
         return $invite;

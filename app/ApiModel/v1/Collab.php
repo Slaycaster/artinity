@@ -16,7 +16,7 @@ class Collab extends Model
 
     public function owner(){
 
-    	return $this->belongsTo('App\ApiModel\v1\User', 'int_user_id', 'int_user_id_fk');
+    	return $this->belongsTo('App\ApiModel\v1\User', 'int_owner_id_fk', 'int_user_id');
 
     }//end function
 
@@ -103,6 +103,22 @@ class Collab extends Model
         }//end if
 
         return new Exception('User is already in the collab.');
+
+    }//end function
+
+    public static function getAllCollab(){
+
+        $collabList         =   Collab::all();
+
+        foreach($collabList as $collab){
+
+            $collab->owner;
+            $collab->members;
+            $collab->groups;
+
+        }//end foreach
+
+        return $collabList;
 
     }//end function
 }
