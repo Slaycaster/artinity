@@ -17,7 +17,9 @@ class Favorite extends Model
     public $hidden          =   [
         'int_interest_id_fk',
         'int_user_id_fk',
-        'int_user_favorite_id'
+        'int_user_favorite_id',
+        'created_at',
+        'updated_at'
     ];
 
     public function user(){
