@@ -77,4 +77,45 @@ class InviteController extends Controller
             );
 
     }//end function
+
+    public function acceptInvite($userId, $requestId){
+
+        try{
+
+            DB::beginTransaction();
+
+            $receivedRequest        =   User::find($userId)
+                ->getReceivedInvite($requestId);
+
+            $result                 =   $receivedRequest->acceptRequest();
+
+            if (!$result){
+
+                throw new Exception($result->getMessage());
+
+            }//end if
+
+            DB::commit();
+            return response()
+                ->json(
+                    [
+                        'message'       =>  'Invite accepted successfully.'
+                    ],
+                    201
+                );
+
+        }catch(Exception $e){
+
+            DB::rollBack();
+            return response()
+                ->json(
+                    [
+                        'message'   =>  $e->getMessage()
+                    ],
+                    500
+                );
+
+        }//end catch
+
+    }//end function
 }
