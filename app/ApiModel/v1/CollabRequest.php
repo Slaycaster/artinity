@@ -16,21 +16,31 @@ class CollabRequest extends Model
 		'int_request_type'
 	];
 
+	private $statusList 		=	[
+		'', 'New', 'Read', 'Accepted', 'Declined'
+	];
+
 	public function sender(){
 
-		return $this->belongsTo('App\ApiModel\v1\User', 'int_user_id', 'int_sender_id_fk');
+		return $this->belongsTo('App\ApiModel\v1\User', 'int_sender_id_fk', 'int_user_id');
 
 	}//end function
 
 	public function receiver(){
 
-		return $this->belongsTo('App\ApiModel\v1\User', 'int_user_id', 'int_sender_id_fk');
+		return $this->belongsTo('App\ApiModel\v1\User', 'int_receiver_id_fk', 'int_user_id');
 
 	}//end function
 
 	public function collab(){
 
-		return $this->belongsTo('App\ApiModel\v1\Collab', 'int_collab_id', 'int_collab_id_fk');
+		return $this->belongsTo('App\ApiModel\v1\Collab', 'int_collab_id_fk', 'int_collab_id');
+
+	}//end function
+
+	public function getStrStatusAttribute(){
+
+		return $this->statusList[$this->int_status];
 
 	}//end function
 }

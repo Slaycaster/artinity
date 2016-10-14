@@ -64,4 +64,17 @@ class InviteController extends Controller
         }//catch
 
     }//end function
+
+    public function getAllInvites($userId){
+
+        return response()
+            ->json(
+                [
+                    'inviteList'        =>  User::find($userId)
+                        ->getReceivedInvites()
+                ],
+                200
+            );
+
+    }//end function
 }
