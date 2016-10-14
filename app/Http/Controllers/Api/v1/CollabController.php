@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use DB;
+use Exception;
 
 use App\ApiModel\v1\Collab;
 use App\ApiModel\v1\User;
@@ -21,7 +22,13 @@ class CollabController extends Controller
      */
     public function index()
     {
-        //
+        return response()
+            ->json(
+                [
+                    'collabList'        =>  Collab::all()
+                ],
+                200
+            );
     }
 
     /**
@@ -68,6 +75,7 @@ class CollabController extends Controller
 
             }//end if
 
+            DB::commit();
             return response()
                 ->json(
                     [
@@ -136,11 +144,43 @@ class CollabController extends Controller
         //
     }
 
+    public function getMember($name){
+
+        $collab         =   Collab::where('str_collab_name', 'LIKE', $name)
+            ->first();
+
+        if (!$collab){
+
+            throw new Exception('Collab is not found!');
+
+        }//end if
+
+        $memberList         =   $collab->members;
+        $groupList          =   $collab->groups;
+
+        foreach($groupList as $group){
+
+            
+
+        }//end foreach
+
+        return response()
+            ->json(
+                [
+                    'memberList'        =>  $collab->members,
+                    'groupList'         =>  $collab->groups
+                ],
+                200
+            );
+
+    }//end function
+
     public function addMember($name, Request $request){
 
         try{
 
             DB::beginTransaction();
+            //check if collab exists
             $collab         =   Collab::where('str_collab_name', '=', $name)
                 ->first();
 
@@ -162,6 +202,7 @@ class CollabController extends Controller
 
             }//end foreach
 
+            DB::commit();
             return response()
                 ->json(
                     [
