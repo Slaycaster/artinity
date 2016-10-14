@@ -14,6 +14,14 @@
                     <span class="input-label">Last Name</span>
                     <input type="text" placeholder="" required="required" ng-model="userForm.lastName">
                 </label>
+                <ion-list>
+                  <ion-radio ng-model="userForm.gender" ng-value="male">Male</ion-radio>
+                  <ion-radio ng-model="userForm.gender" ng-value="female">Female</ion-radio>
+                </ion-list>
+                <label class="item item-input" id="signup-input4">
+                    <span class="input-label">Date of Birth</span>
+                    <input type="date" placeholder="" required="required" ng-model="userForm.bday">
+                </label>
                 <label class="item item-input" id="signup-input4">
                     <span class="input-label">Email</span>
                     <input type="email" placeholder="" required="required" ng-model="userForm.email">
