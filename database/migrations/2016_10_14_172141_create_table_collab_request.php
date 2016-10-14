@@ -18,10 +18,20 @@ class CreateTableCollabRequest extends Migration
             $table->increments('int_collab_request_id');
             $table->integer('int_collab_id_fk')
                 ->unsigned();
+            $table->integer('int_sender_type');
             $table->integer('int_sender_id_fk')
-                ->unsigned();
+                ->unsigned()
+                ->nullable();
+            $table->integer('int_group_sender_id_fk')
+                ->unsigned()
+                ->nullable();
+            $table->integer('int_receiver_type');
             $table->integer('int_receiver_id_fk')
-                ->unsigned();
+                ->unsigned()
+                ->nullable();
+            $table->integer('int_group_receiver_id_fk')
+                ->unsigned()
+                ->nullable();
             $table->text('str_collab_request_message');
             $table->integer('int_status');
             $table->integer('int_request_type');
