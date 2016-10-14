@@ -29,7 +29,7 @@ Route::group(['prefix' => 'api'], function(){
 
 		Route::resource('groups', 'Api\v1\GroupController');
 
-		Route::post('auth/login', 'Api\v1\LoginController@login')		;
+		Route::post('auth/login', 'Api\v1\LoginController@login');
 
 	});
 
