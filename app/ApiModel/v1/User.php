@@ -54,7 +54,7 @@ class User extends Model
 
     public function groups(){
 
-        return $this->hasMany('App\ApiModel\v1\Group', 'group_users', 'int_user_id_fk', 'int_group_id_fk');
+        return $this->belongsToMany('App\ApiModel\v1\Group', 'group_users', 'int_user_id_fk', 'int_group_id_fk');
 
     }//end function
 

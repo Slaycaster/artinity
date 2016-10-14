@@ -132,6 +132,10 @@ class UserController extends Controller
             }//end if
 
             DB::commit();
+
+            //save userID to session after successfully logged in
+            $request->session()->put('userID', $user->int_user_id);
+
             return response()
                 ->json(
                     [
