@@ -23,8 +23,6 @@ class CreateTableCollabs extends Migration
                 ->unsigned();
             $table->timestamps();
 
-            $table->unique(['str_collab_name', 'int_owner_id_fk'], 'collab_owner_uq');
-
             $table->foreign('int_owner_id_fk')
                 ->references('int_user_id')
                 ->on('users');

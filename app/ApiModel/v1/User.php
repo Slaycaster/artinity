@@ -239,4 +239,30 @@ class User extends Model
     	}//end catch
 
     }//end function
+
+    public function createCollab(){
+
+        try{
+
+            DB::beginTransaction();
+            $collab     =   $this->owned_collabs()
+                ->create([
+                    'str_collab_name'       =>  'Collaboration Name',
+                    'str_collab_desc'       =>  $request->str_collab_desc,
+                    'int_status'            =>  1
+                    ]);
+
+            $collab->addMember($this->int_user_id, 1);
+
+            DB::commit();
+            return $collab;
+
+        }catch(Exception $e){
+
+            DB::rollBack();
+            return false;
+
+        }//end catch
+
+    }//end function
 }
