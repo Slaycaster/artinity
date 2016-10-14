@@ -37,6 +37,13 @@ class Group extends Model
 
     }//end function
 
+    public function collabs(){
+
+        return $this->belongsToMany('App\ApiModel\v1\Collab', 'collabs_members', 'int_group_id_fk', 'int_collab_id_fk')
+            ->withPivot('bool_is_admin', 'int_collab_member_id');
+
+    }//end function
+
     public static function getGroupInfo($id){
         return Group::where('int_group_id', $id)
             ->select('int_group_id', 'str_group_name', 'int_owner_id_fk', 'str_group_desc')->first();

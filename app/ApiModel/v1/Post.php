@@ -29,8 +29,8 @@ class Post extends Model
 
     public function user(){
 
-        return $this->hasOne('App\ApiModel\v1\Users', 'int_user_id', 'int_user_id_fk');
+        return $this->hasOne('App\ApiModel\v1\User', 'int_user_id', 'int_user_id_fk');
 
     }//end function
-    
+
 }

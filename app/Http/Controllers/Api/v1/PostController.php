@@ -11,6 +11,7 @@ use DB;
 use Exception;
 
 use App\ApiModel\v1\Collab;
+use App\ApiModel\v1\User;
 
 class PostController extends Controller
 {
@@ -27,6 +28,8 @@ class PostController extends Controller
     			->where('int_user_id', '=', $userId)
     			->first();
 
+    		$userGroup		=	null;
+
     		if (!$member){
 
     			//member not found
@@ -36,6 +39,7 @@ class PostController extends Controller
     				//member not yet found
     				if (!$member){
 
+    					$userGroup 		=	$group;
 	    				$member 	=	$group->members()
 	    					->where('int_user_id', '=', $userId)
 	    					->first();
@@ -55,10 +59,45 @@ class PostController extends Controller
 
     		}//end if
 
+    		$collab_member 		=	null;
+    		$intUserId 			=	null;
+    		if ($userGroup){
+
+				$collab_member 		=	DB::table('collabs_members')
+					->select('int_collab_member_id')
+					->where('int_group_id_fk', '=', $group->int_group_id)
+					->first();
+
+				$intUserId 			=	$userId;
+
+			}//end if
+			else{
+
+				$collab_member 		=	DB::table('collabs_members')
+					->select('int_collab_member_id')
+					->where('int_user_id_fk', '=', $userId)
+					->first();
+
+			}//end else
+
     		$post 		=	$collab->posts()
     			->create([
-    				'int_collab_member'
+    				'int_collab_member_id_fk'	=>	$collab_member->int_collab_member_id,
+    				'str_post_message'			=>	$request->str_post_message,
+    				'int_post_type'				=>	$request->int_post_type,
+    				'str_attachment_dir'		=>	$request->str_attachment_dir? $request->str_attachment_dir : null,
+    				'int_user_id_fk'			=>	$intUserId
     				]);
+
+    		DB::commit();
+    		return response()
+    			->json(
+    				[
+    					'message'		=>	'Post saved successfully.',
+    					'post'			=>	$post
+    				],
+    				201
+    			);
 
     	}catch(Exception $e){
 
@@ -72,6 +111,27 @@ class PostController extends Controller
     			);
 
     	}//end catch
+
+    }//end function
+
+    public function getAllPost($collabId){
+
+    	$posts 		=	Collab::find($collabId)
+    		->posts;
+
+    	foreach($posts as $post){
+
+    		$post->user;
+
+    	}//end foreach
+
+    	return response()
+    		->json(
+    			[
+    				'postList'			=>	$posts
+    			],
+    			200
+    		);
 
     }//end function
 }

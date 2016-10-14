@@ -32,6 +32,7 @@ Route::group(['prefix' => 'api'], function(){
 			Route::get('{id}/requests', 'Api\v1\CollabController@getRequests');
 
 			Route::post('{collabId}/posts/users/{userId}', 'Api\v1\PostController@savePost');
+			Route::get('{collabId}/posts', 'Api\v1\PostController@getAllPost');
 
 		});
 
