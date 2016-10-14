@@ -52,6 +52,12 @@ class User extends Model
 
     }//end function
 
+    public function groups(){
+
+        return $this->hasMany('App\ApiModel\v1\Group', 'group_users', 'int_user_id_fk', 'int_group_id_fk');
+
+    }//end function
+
     public function getStrFullNameAttribute(){
 
     	return ucfirst($this->str_first_name).' '.ucfirst($this->str_last_name);

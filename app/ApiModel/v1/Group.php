@@ -19,7 +19,7 @@ class Group extends Model
 
     public function members(){
 
-    	return $this->hasMany('App\ApiModel\v1\User');
+    	return $this->hasMany('App\ApiModel\v1\User', 'groups_users', 'int_group_id_fk', 'int_user_id_fk');
 
     }//end function
 }
