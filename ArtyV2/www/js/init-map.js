@@ -11,8 +11,6 @@ function initMap() {
 
 			appConfig.latLng = latLng;
 
-			console.log(appConfig.latLng);
-
 			geocoder.geocode({
 				location: latLng
 			}, function(results, status) {
