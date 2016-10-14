@@ -146,7 +146,7 @@ class CollabController extends Controller
 
     public function getMember($id){
 
-        $collab         =   Collab::find($id)
+        $collab         =   Collab::find($id);
 
         if (!$collab){
 
