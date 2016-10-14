@@ -227,6 +227,6 @@ class CollabController extends Controller
     }//end function
 
     public function getRequests($id){
-        return Collab::find($id)->received_requests()->get();
+        return Collab::find($id)->getReceivedRequests();
     }
 }

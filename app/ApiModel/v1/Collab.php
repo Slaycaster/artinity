@@ -44,6 +44,24 @@ class Collab extends Model
 
     }//end function
 
+    public function getReceivedRequests(){
+
+        $requestList = $this->received_requests()
+            ->where('int_request_type', '=', 2)
+            ->get();
+
+        foreach($requestList as $request){
+
+            $request->sender;
+            $request->collab;
+            $request->str_status         =   $request->str_status;
+
+        }//end foreach
+
+        return $requestList;
+
+    }//end function
+
     public function addMember($intId, $intType){
 
         if ($intType == 1){
