@@ -63,6 +63,7 @@
     <script type="text/javascript" src="js/controller/collabItemsCtrl.js"></script>
     <script type="text/javascript" src="js/controller/collabViewCtrl.js"></script>
     <script type="text/javascript" src="js/controller/loginCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/logoutCtrl.js"></script>
     <script type="text/javascript" src="js/controller/menuCtrl.js"></script>
     <script type="text/javascript" src="js/controller/requestsCtrl.js"></script>
     <script type="text/javascript" src="js/controller/signupCtrl.js"></script>
@@ -129,8 +130,11 @@
                             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                         </ion-item>
-                    <ion-item class="item-icon-left assertive" id="menu-list-item18" data-componentid="list-item18">
-                        <i class="icon ion-power "></i>Log out</ion-item>
+                    <ion-item class="item-icon-left assertive" id="menu-list-item18" data-componentid="list-item18" ng-controller="logoutCtrl">
+                        <a href="" ng-click="logoutOnClick()">
+                            <i class="icon ion-power "></i>Log out
+                        </a>
+                    </ion-item>
                 </ion-list>
             </ion-content>
         </ion-side-menu>
