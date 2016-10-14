@@ -1,0 +1,52 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-balanced">
+      <h1 class="title">Collab a Group</h1>
+    </ion-header-bar>
+    <div class="bar bar-subheader bar-balanced" style="height: 60px !important;">
+      <label class="item item-input" style="width: 100%; color: white; background-color:#009688;">
+                <i class="icon ion-search placeholder-icon light"></i>
+                <input type="search" placeholder="Search for person of interest" style="color: white;">
+    </label>
+    </div>
+     
+    <ion-content style="margin-top: 20%;">
+        <ion-list id="collaboration-list8" >
+            <label class="item item-input" id="signup-input3">
+                    <span class="input-label">Group Name</span>
+                    <input type="text" placeholder="" required="required" ng-model="userForm.firstName">
+                </label>
+            <ion-item class="item-avatar item-icon-right" id="collaboration-list-item20" ui-sref="tabsController.collabItems">
+                <img src="img/K5LgMQBtSqeM37Ji9bjA_14100509_10154028733903090_398476474469218650_n.jpg">
+                <h2>Bebelabs</h2>
+                <p>2 days ago</p>
+                <i class="icon ion-fork-repo" ng-click="showPopup($index)"></i> 
+            </ion-item>
+            <ion-item class="item-avatar item-icon-right" id="collaboration-list-item23" ui-sref="tabsController.collabItems">
+                <img src="img/eJBH8alYRDWW3iiSVYGt_13901900_649670325185761_1747214589_o.jpg">
+                <h2>John Wick</h2>
+                <p>4 days ago</p>
+                <i class="icon ion-fork-repo" ng-click="showPopup($index)"></i> 
+            </ion-item>
+        </ion-list>
+        <button class="button button-block button-balanced" ng-click="">Create</button>
+      <button class="button button-block button-assertive button-outline" ng-click="closeModal2()">Cancel</button>
+    </ion-content>
+  </ion-modal-view>
+
+  <style type="text/css">
+    ::-webkit-input-placeholder {
+       color: white !important;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: white !important;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: white !important;  
+    }
+
+    :-ms-input-placeholder {  
+       color: white !important;  
+    }
+</style>
