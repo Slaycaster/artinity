@@ -20,6 +20,9 @@ class CreateTablePosts extends Migration
                 ->unsigned();
             $table->integer('int_collab_member_id_fk')
                 ->unsigned();
+            $table->integer('int_user_id_fk')
+                ->unsigned()
+                ->nullable();
             $table->text('str_post_message');
             $table->integer('int_post_type');
             $table->text('str_attachment_dir');
@@ -32,6 +35,10 @@ class CreateTablePosts extends Migration
             $table->foreign('int_collab_member_id_fk')
                 ->references('int_collab_member_id')
                 ->on('collabs_members');
+
+            $table->foreign('int_user_id_fk')
+                ->references('int_user_id')
+                ->on('users');
 
         });
     }

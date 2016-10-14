@@ -242,6 +242,19 @@ class InviteController extends Controller
 
     }//end function
 
+    public function getAllGroupInvites($groupId){
+
+        return response()
+            ->json(
+                [
+                    'inviteList'        =>  Group::find($groupId)
+                        ->getReceivedInvites()
+                ],
+                200
+            );
+
+    }//end function
+
     public function acceptInvite($userId, $requestId){
 
         try{
@@ -249,6 +262,47 @@ class InviteController extends Controller
             DB::beginTransaction();
 
             $receivedRequest        =   User::find($userId)
+                ->getReceivedInvite($requestId);
+
+            $result                 =   $receivedRequest->acceptRequest();
+
+            if (!$result){
+
+                throw new Exception($result->getMessage());
+
+            }//end if
+
+            DB::commit();
+            return response()
+                ->json(
+                    [
+                        'message'       =>  'Invite accepted successfully.'
+                    ],
+                    201
+                );
+
+        }catch(Exception $e){
+
+            DB::rollBack();
+            return response()
+                ->json(
+                    [
+                        'message'   =>  $e->getMessage()
+                    ],
+                    500
+                );
+
+        }//end catch
+
+    }//end function
+
+    public function acceptGroupInvite($groupId, $requestId){
+
+        try{
+
+            DB::beginTransaction();
+
+            $receivedRequest        =   Group::find($groupId)
                 ->getReceivedInvite($requestId);
 
             $result                 =   $receivedRequest->acceptRequest();
