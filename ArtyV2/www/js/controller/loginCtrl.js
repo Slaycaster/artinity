@@ -15,4 +15,5 @@ function ($scope, $stateParams, UserService) {
 			console.log(errorResponse);
 		})
 	}
+
 }]);
