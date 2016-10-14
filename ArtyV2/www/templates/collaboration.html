@@ -4,10 +4,7 @@
     </ion-nav-buttons>
     
     <ion-content padding="true" class="has-header">
-        <div class="row">
-            <div class="col col-75"><h3 style="color:black;font-weight:300;">Name Here</h3></div>
-            <div class="col col-25"><a class="button button-icon icon ion-search btn-clear" ng-click="openModal()"></a></div>
-        </div>
+
         
         <h5 id="collaboration-heading6" style="color:#00796B;font-weight:300;">Currently Collaborated with...</h5>
         <ion-list id="collaboration-list8">
@@ -22,6 +19,8 @@
                 <p>4 days ago</p>
             </ion-item>
         </ion-list>
+
+        <button class="button button-balanced button-block icon icon-left ion-person-add" ng-click="openModal2()">Start a group collab</button>
         <h5 id="collaboration-heading7" style="color:#929292;font-weight:300;">Finished collaborations</h5>
         <ion-list id="collaboration-list13">
             <ion-item class="item-avatar" id="collaboration-list-item27" ui-sref="tabsController.collabItems">
