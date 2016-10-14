@@ -64,6 +64,12 @@ class User extends Model
 
     }//end function
 
+    public function owned_collabs(){
+
+        return $this->hasMany('App\ApiModel\v1\Collab', 'int_owner_id_fk', 'int_user_id');
+
+    }//end function
+
     public function collabs(){
 
         return $this->belongsToMany('App\ApiModel\v1\Collab', 'collabs_members', 'int_user_id_fk', 'int_collab_id_fk');
