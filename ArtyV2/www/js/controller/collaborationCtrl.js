@@ -15,6 +15,8 @@ function ($scope, $stateParams, $ionicModal) {
 	   $scope.modal.show();
 	 };
 	 $scope.closeModal = function() {
+	 	console.log('Collab close');
+
 	   $scope.modal.hide();
 	 };
 	 // Cleanup the modal when we're done with it!
