@@ -13,7 +13,7 @@ use App\ApiModel\v1\User;
 
 class InviteController extends Controller
 {
-    public function inviteCollab($senderId, $receiverId, Request $request){
+    public function inviteCollabUserToUser($senderId, $receiverId, Request $request){
 
         try{
 
@@ -34,6 +34,8 @@ class InviteController extends Controller
 
             $user->sent_requests()
                 ->create([
+                    'int_sender_type'               =>  1,
+                    'int_receiver_type'             =>  1,
                     'int_receiver_id_fk'            =>  $receiverId,
                     'int_collab_id_fk'              =>  $request->int_collaboration_id? $request->int_collaboration_id : $result,
                     'str_collab_request_message'    =>  $request->str_collab_request_message,
@@ -62,6 +64,27 @@ class InviteController extends Controller
                 );
 
         }//catch
+
+    }//end function
+
+    public function inviteCollabUserToGroup($userId, $groupId, Request $request){
+
+        try{
+
+            DB::beginTransaction();
+
+        }catch(Exception $e){
+
+            DB::rollBack();
+            return response()
+                ->json(
+                    [
+                        'message'       =>  $e->getMessage()
+                    ],
+                    500
+                );
+
+        }//end catch
 
     }//end function
 

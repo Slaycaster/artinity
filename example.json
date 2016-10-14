@@ -72,5 +72,5 @@ Collab-Add Member
 Invite:
 {
 	"int_collab_id"				:	null,
-	"str_collab_request_name"	:	"Hello, join me!"
+	"str_collab_request_message"	:	"Hello, join me!"
 }
