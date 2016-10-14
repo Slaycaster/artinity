@@ -1,3 +1,5 @@
 const appConfig = {
-	location: ''
+	baseUrl: 'http://localhost:8000/',
+	location: '',
+	latLng: {}
 };
