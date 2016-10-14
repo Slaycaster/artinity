@@ -34,7 +34,7 @@ angular.module('app.services', [])
         }).then(function(response) {
             deferred.resolve(response.data.message);
         }, function(error) {
-            deferred.reject(error);
+            deferred.reject(error.data.message);
         });
 
         return deferred.promise;
