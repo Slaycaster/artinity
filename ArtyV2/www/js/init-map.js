@@ -9,6 +9,8 @@ function initMap() {
 				lng: position.coords.longitude
 			}
 
+			appConfig.latLng = latLng;
+
 			geocoder.geocode({
 				location: latLng
 			}, function(results, status) {

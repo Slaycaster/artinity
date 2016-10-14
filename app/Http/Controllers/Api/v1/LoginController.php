@@ -1,32 +1,47 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Carbon\Carbon;
 use DB;
+
+use App\ApiModel\v1\User;
+
+use Exception;
+
+use Hash;
 
 class LoginController extends Controller
 {
-    public function login(Request $request){
+     public function login(Request $request){
     	try{
-    		DB::beginTransaction();
 
-    		$user = User::where('str_email', $request->email)->where('str_password', bcrypt($request->password))->first();
+    		$user = User::where('str_email', $request->str_email)->first();
 
 	    	if(count($user) > 0){
-	    		$request->session()->put('userID', $user->int_user_id);
-	    	}
-	    	else{
-	    		//an error occured
-				throw new Exception('User does not exist');
+
+	    		if (Hash::check($request->str_password, $user->str_password))
+				{
+				    $request->session()->put('userID', $user->int_user_id);
+				}
+				else{
+					//an error occured
+					throw new Exception('User does not exist');
+				}
+
 	    	}
 
-	    	DB::commit();
+	    	else{
+
+	    		//an error occured
+				throw new Exception('User does not exist');
+
+	    	}
+
 	    	return response()
                 ->json(
                     [

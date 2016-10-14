@@ -5,7 +5,37 @@
 
      
     <ion-content>
+    <form>
+        
+   
+      <img src="">
+    <cropme
+        width="300"
+        height="150"
+        ratio="1"
+        icon-class=""
+        type="png"
+        destination-width="300"
+        id="cropme1"
+        ok-label="Ok"
+        
+        cancel-label="Cancel"
+
+        style="margin: 10px;">
+    </cropme>
       
+
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="Item Name">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Description">
+        </label>
+      </div>
+      <button class="button button-block button-assertive" ng-click="" type="submit">Add</button>
+       </form>
       <button class="button button-block button-assertive" ng-click="closeModal()">Cancel</button>
     </ion-content>
   </ion-modal-view>
+

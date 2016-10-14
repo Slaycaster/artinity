@@ -1,30 +1,34 @@
 <ion-view title="Signup" id="page6">
     <ion-content padding="true" class="has-header">
-        <form id="signup-form2" class="list">
+        <form id="signup-form2" class="list" ng-submit="signUpOnSubmit()">
             <ion-list id="signup-list4">
                 <label class="item item-input" id="signup-input3">
                     <span class="input-label">First Name</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" required="required" ng-model="userForm.firstName">
                 </label>
                 <label class="item item-input" id="signup-input7">
                     <span class="input-label">Middle Name</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" required="required" ng-model="userForm.middleName">
                 </label>
                 <label class="item item-input" id="signup-input8">
                     <span class="input-label">Last Name</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" required="required" ng-model="userForm.lastName">
                 </label>
-                <label class="item item-input" id="signup-input9">
-                    <span class="input-label">Location</span>
-                    <input type="text" placeholder="">
+                <ion-list>
+                  <ion-radio ng-model="userForm.gender" ng-value="male">Male</ion-radio>
+                  <ion-radio ng-model="userForm.gender" ng-value="female">Female</ion-radio>
+                </ion-list>
+                <label class="item item-input" id="signup-input4">
+                    <span class="input-label">Date of Birth</span>
+                    <input type="date" placeholder="" required="required" ng-model="userForm.bday">
                 </label>
                 <label class="item item-input" id="signup-input4">
                     <span class="input-label">Email</span>
-                    <input type="email" placeholder="">
+                    <input type="email" placeholder="" required="required" ng-model="userForm.email">
                 </label>
                 <label class="item item-input" id="signup-input5">
                     <span class="input-label">Password</span>
-                    <input type="text" placeholder="">
+                    <input type="password" placeholder="" required="required" ng-model="userForm.password">
                 </label>
             </ion-list>
             <button id="signup-button3" class="button button-balanced  button-block">Sign up</button>

@@ -18,4 +18,25 @@ angular.module('app.services', [])
 
         return cityNameDetails;
 	}
+}])
+
+.service('UserService', ['$http', '$q', function($http, $q) {
+    this.login = function(loginDetails) {
+        var deferred = $q.defer();
+
+        $http({
+            url: appConfig.baseUrl + 'api/v1/auth/login',
+            method: 'POST',
+            data: $.param(loginDetails),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function(response) {
+            deferred.resolve(response.data.message);
+        }, function(error) {
+            deferred.reject(error);
+        });
+
+        return deferred.promise;
+    }
 }]);
