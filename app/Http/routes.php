@@ -29,6 +29,10 @@ Route::group(['prefix' => 'api'], function(){
 
 		Route::group(['prefix' => 'groups'], function(){
 			Route::get('{id}/members', 'Api\v1\GroupController@getMembers');
+
+			Route::post('{id}/members/', 'Api\v1\GroupController@addMembers');
+
+			Route::delete('{id}/members/', 'Api\v1\GroupController@deleteMembers');
 		});
 
 		Route::resource('groups', 'Api\v1\GroupController');
