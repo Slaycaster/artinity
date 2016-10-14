@@ -41,7 +41,9 @@ Route::group(['prefix' => 'api'], function(){
 			Route::get('{userId}/invites', 'Api\v1\InviteController@getAllInvites');
 			Route::post('{userId}/invites/{requestId}/accept', 'Api\v1\InviteController@acceptInvite');
 
-			Route::post('{senderId}/requests/{receiverId}', 'Api\v1\RequestController@requestCollab');
+			Route::post('{senderId}/requests/{receiverId}', 'Api\v1\RequestController@requestCollabUserToUser');
+			Route::post('{senderId}/requests/groups/{groupId}', 'Api\v1\RequestController@requestCollabUserToGroup');
+			Route::post('{userId}/requests/{requestId}/accept', 'Api\v1\RequestController@acceptRequest');
 
 		});
 

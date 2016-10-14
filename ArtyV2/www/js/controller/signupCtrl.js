@@ -31,5 +31,20 @@ function ($scope, $stateParams, $http) {
 		}, function(error) {
 			console.log('Error!');
 		})
-	}
+	};
+
+	$scope.$on("cropme:done", function(ev, result, cropmeEl) {
+	        var blob = result.croppedImage;
+	        var xhr = new XMLHttpRequest;
+	        xhr.setRequestHeader("Content-Type", blob.type);
+	        xhr.onreadystatechange = function(e) {
+	            if (this.readyState === 4 && this.status === 200) {
+	                return console.log("done");
+	            } else if (this.readyState === 4 && this.status !== 200) {
+	                return console.log("failed");
+	            }
+	        };
+	        xhr.open("POST", url, true);
+	        xhr.send(blob);
+	    });
 }])

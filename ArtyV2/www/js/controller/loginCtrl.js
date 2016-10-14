@@ -17,4 +17,5 @@ function ($scope, $stateParams, $state, UserService) {
 			console.log(errorResponse);
 		})
 	}
+
 }]);

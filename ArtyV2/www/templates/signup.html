@@ -2,6 +2,20 @@
     <ion-content padding="true" class="has-header">
         <form id="signup-form2" class="list" ng-submit="signUpOnSubmit()">
             <ion-list id="signup-list4">
+                <cropme
+                    width="auto"
+                    height="250"
+                    ratio="1"
+                    icon-class=""
+                    type="png"
+                    destination-width="300"
+                    id="cropme1"
+                    ok-label="Ok"
+                    
+                    cancel-label="Cancel"
+
+                    style="margin: 10%;">
+                </cropme>
                 <label class="item item-input" id="signup-input3">
                     <span class="input-label">First Name</span>
                     <input type="text" placeholder="" required="required" ng-model="userForm.firstName">
