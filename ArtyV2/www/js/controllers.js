@@ -11,6 +11,8 @@ function ($scope, $stateParams, $ionicModal) {
 	   $scope.modal = modal;
 	 });
 	 $scope.openModal = function() {
+	   $scope.location = appConfig.location;
+
 	   $scope.modal.show();
 	 };
 	 $scope.closeModal = function() {
