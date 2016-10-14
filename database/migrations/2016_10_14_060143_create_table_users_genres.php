@@ -27,7 +27,7 @@ class CreateTableUsersGenres extends Migration
                 'int_user_id_fk',
                 'int_interest_id_fk',
                 'str_genre_name'
-                ], 'user_genre_fk');
+                ], 'user_genre_uq');
 
             $table->foreign('int_user_id_fk')
                 ->references('int_user_id')
