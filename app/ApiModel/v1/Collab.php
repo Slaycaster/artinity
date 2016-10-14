@@ -25,4 +25,10 @@ class Collab extends Model
     	return $this->belongsToMany('App\ApiModel\v1\User', 'collabs_members', 'int_collab_id_fk', 'int_user_id_fk');
 
     }//end function
+
+    public function posts(){
+
+    	return $this->hasMany('App\ApiModel\v1\Post', 'int_collab_id_fk', 'int_collab_id');
+
+    }//end function
 }
