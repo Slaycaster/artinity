@@ -130,7 +130,20 @@ class CollabController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $collab             =   Collab::find($id);
+
+        $collab->str_collab_name        =   $request->str_collab_name;
+        $collab->str_collab_desc        =   $request->str_collab_desc;
+
+        $collab->save();
+
+        return response()
+            ->json(
+                [
+                    'message'       =>  'Collab updated successfully.'
+                ],
+                200
+            );
     }
 
     /**
