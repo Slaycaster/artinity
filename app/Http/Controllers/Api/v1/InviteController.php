@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use DB;
+
+use App\ApiModel\v1\User;
+
 class InviteController extends Controller
 {
     public function inviteCollab($senderId, $receiverId, Request $request){
@@ -32,7 +36,7 @@ class InviteController extends Controller
                 ->create([
                     'int_receiver_id_fk'            =>  $receiverId,
                     'int_collab_id_fk'              =>  $request->int_collaboration_id? $request->int_collaboration_id : $result,
-                    'str_collab_request_message'    =>  $request->str_request_message,
+                    'str_collab_request_message'    =>  $request->str_collab_request_message,
                     'int_status'                    =>  1,
                     'int_request_type'              =>  1
                     ]);
@@ -41,7 +45,7 @@ class InviteController extends Controller
             return response()
                 ->json(
                     [
-                        'message'       =>  'Invite is successfully sent.'
+                        'message'       =>  'Invite sent successfully.'
                     ],
                     201
                 );

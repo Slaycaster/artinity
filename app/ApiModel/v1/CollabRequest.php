@@ -1,6 +1,6 @@
 <?php
 
-namespace App\App\ApiModel\v1;
+namespace App\ApiModel\v1;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,8 @@ class CollabRequest extends Model
 		'int_collab_id_fk',
 		'int_receiver_id_fk',
 		'str_collab_request_message',
-		'int_status'
+		'int_status',
+		'int_request_type'
 	];
 
 	public function sender(){

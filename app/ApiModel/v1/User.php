@@ -9,6 +9,7 @@ use DB;
 use App\ApiModel\v1\Interest;
 use App\ApiModel\v1\Skill;
 
+
 class User extends Model
 {
     public $primaryKey 		=	'int_user_id';
@@ -260,7 +261,7 @@ class User extends Model
             $collab     =   $this->owned_collabs()
                 ->create([
                     'str_collab_name'       =>  'Collaboration Name',
-                    'str_collab_desc'       =>  $request->str_collab_desc,
+                    'str_collab_desc'       =>  null,
                     'int_status'            =>  1
                     ]);
 

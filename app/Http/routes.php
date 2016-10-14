@@ -32,6 +32,12 @@ Route::group(['prefix' => 'api'], function(){
 
 		});
 
+		Route::group(['prefix' => 'users'], function(){
+
+			Route::post('{senderId}/invites/{receiverId}', 'Api\v1\InviteController@inviteCollab');
+
+		});
+
 		Route::resource('collabs', 'Api\v1\CollabController');
 		Route::resource('users', 'Api\v1\UserController');
 

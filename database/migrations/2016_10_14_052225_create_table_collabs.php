@@ -17,7 +17,8 @@ class CreateTableCollabs extends Migration
             $table->engine      =   'InnoDB';
             $table->increments('int_collab_id');
             $table->string('str_collab_name', 50);
-            $table->text('str_collab_desc');
+            $table->text('str_collab_desc')
+                ->nullable();
             $table->integer('int_status');
             $table->integer('int_owner_id_fk')
                 ->unsigned();
