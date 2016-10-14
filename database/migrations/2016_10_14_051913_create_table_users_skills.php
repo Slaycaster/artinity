@@ -25,7 +25,7 @@ class CreateTableUsersSkills extends Migration
             $table->unique([
                 'int_user_id_fk',
                 'int_skill_id_fk'
-                ]);
+                ], 'user_skill_uq');
 
             $table->foreign('int_user_id_fk')
                 ->references('int_user_id')
