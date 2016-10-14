@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Carbon\Carbon;
 use DB;
 
 use App\ApiModel\v1\User;
 
+use Exception;
+
 class LoginController extends Controller
 {
-    public function login(Request $request){
+     public function login(Request $request){
     	try{
-    		DB::beginTransaction();
 
     		$user = User::where('str_email', $request->email)->where('str_password', bcrypt($request->password))->first();
 
@@ -28,7 +28,6 @@ class LoginController extends Controller
 				throw new Exception('User does not exist');
 	    	}
 
-	    	DB::commit();
 	    	return response()
                 ->json(
                     [
