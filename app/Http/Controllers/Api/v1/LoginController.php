@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use DB;
 
+use App\ApiModel\v1\User;
+
 class LoginController extends Controller
 {
     public function login(Request $request){
