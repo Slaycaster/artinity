@@ -60,13 +60,23 @@ class PostController extends Controller
 
     		}//end if
 
+
+            //check and upload the file
+            if($request->hasFile('str_attachment_dir')){
+                $filename = rand(1000,100000)."-".$request->file('str_attachment_dir')->getClientOriginalName();
+                $filepath = "files/";
+                $request->file('str_attachment_dir')->move($filepath, $filename);
+                $filepath = $filepath.$filename;
+            }
+
     		$post 		=	$collab->posts()
     			->create([
     				'int_user_id_fk'			=>	$userId,
     				'int_group_id_fk'			=>	$boolGroup? $userGroup->int_group_id : null,
     				'str_post_message'			=>	$request->str_post_message,
     				'int_post_type'				=>	$request->int_post_type,
-    				'str_attachment_dir'		=>	$request->str_attachment_dir? $request->str_attachment_dir : null
+    				'str_attachment_dir'		=>	$filepath? $filepath : null,
+    				'int_user_id_fk'			=>	$intUserId
     				]);
 
     		DB::commit();
