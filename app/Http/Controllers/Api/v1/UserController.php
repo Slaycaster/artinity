@@ -52,6 +52,14 @@ class UserController extends Controller
 
             DB::beginTransaction();
 
+            //check and upload the file
+            if($request->hasFile('str_photo_dir')){
+                $filename = rand(1000,100000)."-".$request->file('str_photo_dir')->getClientOriginalName();
+                $filepath = "files/";
+                $request->file('str_photo_dir')->move($filepath, $filename);
+                $filepath = $filepath.$filename;
+            }
+
             $user       =   User::create([
                 'str_first_name'    =>  $request->str_first_name,
                 'str_middle_name'   =>  $request->str_middle_name,
@@ -60,6 +68,7 @@ class UserController extends Controller
                 'str_email'         =>  $request->str_email,
                 'int_gender'        =>  $request->int_gender,
                 'str_password'      =>  bcrypt($request->str_password),
+                'str_photo_dir'     =>  $filepath,
                 'dbl_location_lat'  =>  $request->dbl_location_lat,
                 'dbl_location_long' =>  $request->dbl_location_long
                 ]);
