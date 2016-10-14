@@ -20,9 +20,12 @@ class PostController extends Controller
     	try{
 
     		DB::beginTransaction();
+            $filepath           =   null;
+            
     		$collab 		=	Collab::find($collabId);
     		
     		$boolGroup		=	false;
+    		$boolUser 		=	false;
 
     		$member			=	$collab->members()
     			->where('int_user_id', '=', $userId)
@@ -59,26 +62,6 @@ class PostController extends Controller
 
     		}//end if
 
-    		$collab_member 		=	null;
-    		$intUserId 			=	null;
-    		if ($userGroup){
-
-				$collab_member 		=	DB::table('collabs_members')
-					->select('int_collab_member_id')
-					->where('int_group_id_fk', '=', $group->int_group_id)
-					->first();
-
-				$intUserId 			=	$userId;
-
-			}//end if
-			else{
-
-				$collab_member 		=	DB::table('collabs_members')
-					->select('int_collab_member_id')
-					->where('int_user_id_fk', '=', $userId)
-					->first();
-
-			}//end else
 
             //check and upload the file
             if($request->hasFile('str_attachment_dir')){
@@ -90,10 +73,11 @@ class PostController extends Controller
 
     		$post 		=	$collab->posts()
     			->create([
-    				'int_collab_member_id_fk'	=>	$collab_member->int_collab_member_id,
+    				'int_user_id_fk'			=>	$userId,
+    				'int_group_id_fk'			=>	$boolGroup? $userGroup->int_group_id : null,
     				'str_post_message'			=>	$request->str_post_message,
     				'int_post_type'				=>	$request->int_post_type,
-    				'str_attachment_dir'		=>	$filepath,
+    				'str_attachment_dir'		=>	$filepath? $filepath : null,
     				'int_user_id_fk'			=>	$intUserId
     				]);
 
@@ -125,11 +109,13 @@ class PostController extends Controller
     public function getAllPost($collabId){
 
     	$posts 		=	Collab::find($collabId)
-    		->posts;
+    		->posts()
+    		->orderBy('updated_at')
+    		->get();
 
     	foreach($posts as $post){
 
-    		$post->user;
+    		$post->member;
 
     	}//end foreach
 

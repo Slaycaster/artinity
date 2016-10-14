@@ -52,6 +52,7 @@ class CollabController extends Controller
         try{
 
             DB::beginTransaction();
+            $filepath           =   null;
 
             $user           =   User::find($request->int_user_id);
 
@@ -73,7 +74,7 @@ class CollabController extends Controller
                 'str_collab_name'       =>  $request->str_collab_name,
                 'str_collab_desc'       =>  $request->str_collab_desc,
                 'int_status'            =>  1,
-                'str_attachment_dir'    =>  $filepath
+                'str_attachment_dir'    =>  $filepath? $filepath : null
                 ]);
 
             $error = $collab->addMember($user->intUserId, 1);
