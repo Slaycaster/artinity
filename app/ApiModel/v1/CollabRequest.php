@@ -4,6 +4,8 @@ namespace App\ApiModel\v1;
 
 use Illuminate\Database\Eloquent\Model;
 
+use DB;
+
 class CollabRequest extends Model
 {
 	public $primaryKey 		=	'int_collab_request_id';
@@ -41,6 +43,40 @@ class CollabRequest extends Model
 	public function getStrStatusAttribute(){
 
 		return $this->statusList[$this->int_status];
+
+	}//end function
+
+	public function acceptRequest(){
+
+		try{
+
+			DB::beginTransaction();
+
+			$this->int_status        =   3;
+	        $this->save();
+
+	        if ($this->int_request_type == 1){
+
+		        $this->collab
+		        	->addMember($this->int_receiver_id_fk, 1);
+
+		    }//end if
+		    else{
+
+		    	$this->collab
+		            ->addMember($this->int_sender_id_fk, 1);
+
+		    }//end else
+
+		    DB::commit();
+		    return true;
+
+		}catch(Exception $e){
+
+			DB::rollBack();
+			return $e;
+
+		}//end catch
 
 	}//end function
 }
