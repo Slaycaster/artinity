@@ -32,7 +32,7 @@ angular.module('app.services', [])
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function(response) {
-            deferred.resolve(response.data.message);
+            deferred.resolve(response.data);
         }, function(error) {
             deferred.reject(error.data.message);
         });
@@ -49,6 +49,27 @@ angular.module('app.services', [])
             }, function(error) {
                 deferred.reject(error.data.message);
             });
+
+        return deferred.promise;
+    }
+}])
+
+.service('InviteService', ['$http', '$q', function($http, $q) {
+    this.sendInvite = function(receiverId, collabDesc) {
+        var deferred = $q.defer();
+
+        $http({
+            url: appConfig.baseUrl + 'api/v1/users/' + appConfig.userId + '/invites/' + receiverId,
+            method: 'POST',
+            data: $.param(collabDesc),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function(response) {
+            deferred.resolve(response.data.message);
+        }, function(error) {
+            deferred.reject(error.data.message);
+        });
 
         return deferred.promise;
     }
