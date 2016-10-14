@@ -9,6 +9,7 @@ use DB;
 use App\ApiModel\v1\Interest;
 use App\ApiModel\v1\Skill;
 
+
 class User extends Model
 {
     public $primaryKey 		=	'int_user_id';
@@ -74,6 +75,18 @@ class User extends Model
     public function collabs(){
 
         return $this->belongsToMany('App\ApiModel\v1\Collab', 'collabs_members', 'int_user_id_fk', 'int_collab_id_fk');
+
+    }//end function
+
+    public function sent_requests(){
+
+        return $this->hasMany('App\ApiModel\v1\CollabRequest', 'int_sender_id_fk', 'int_user_id');
+
+    }//end function
+
+    public function received_requests(){
+
+        return $this->hasMany('App\ApiModel\v1\CollabRequest', 'int_receiver_id_fk', 'int_user_id');
 
     }//end function
 
@@ -239,6 +252,32 @@ class User extends Model
     		return $e;
 
     	}//end catch
+
+    }//end function
+
+    public function createCollab(){
+
+        try{
+
+            DB::beginTransaction();
+            $collab     =   $this->owned_collabs()
+                ->create([
+                    'str_collab_name'       =>  'Collaboration Name',
+                    'str_collab_desc'       =>  null,
+                    'int_status'            =>  1
+                    ]);
+
+            $collab->addMember($this->int_user_id, 1);
+
+            DB::commit();
+            return $collab->int_collab_id;
+
+        }catch(Exception $e){
+
+            DB::rollBack();
+            return false;
+
+        }//end catch
 
     }//end function
 }

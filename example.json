@@ -21,6 +21,36 @@ User:
 		}
 	]
 }
+{
+	"str_first_name"	:	"Ghed",
+	"str_middle_name"	:	"Roxas",
+	"str_last_name"		:	"Perona",
+	"date_birth"		:	"July 12, 1996",
+	"str_email"			:	"ghed_perona@yahoo.com",
+	"int_gender"		:	1,
+	"dbl_location_long"	:	5,
+	"dbl_location_lat"	:	3,
+	"str_password"		:	"ghedpogi",
+	"interestList"		:	[
+		{
+			"strInterestName"	:	"Music",
+			"genreList"			:	[
+				"Rock", "Pop"
+			],
+			"favoriteList"		:	[
+				"Wataman"
+			]
+		}
+	]
+}
+
+Group:
+{
+	"str_group_name" : "Maniacs",
+	"int_owner_id_fk" : "1",
+	"str_group_desc" : "We are not maniacs!",
+	"group_members" : ["2"]
+}
 
 Collab:
 {
@@ -37,4 +67,10 @@ Collab-Add Member
 			"intMemberType"		:	1
 		}
 	]
+}
+
+Invite:
+{
+	"int_collab_id"				:	null,
+	"str_collab_request_name"	:	"Hello, join me!"
 }

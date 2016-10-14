@@ -155,4 +155,82 @@ class GroupController extends Controller
         return Group::where('int_group_id', $id)->first()
             ->members()->get();
     }
+
+    public function addMembers($id, Request $request){
+        try{
+
+            DB::beginTransaction();
+
+            $group = Group::find($id);
+
+            if($request->group_members){
+
+                //tentative(id)
+                foreach ($request->group_members as $key => $group_member) {
+
+                    $group->members()
+                        ->attach($group_member);
+
+                }
+
+            }
+            else{
+                throw new Exception('Group members not set');
+            }
+
+            DB::commit();
+
+            return response()
+                ->json(
+                    [
+                        'message'       =>  'Members successfully added.'
+                    ],
+                    200
+                    );
+
+        }catch(Exception $e){
+
+            throw new Exception('Group members not set');
+
+        }
+    }
+
+    public function deleteMembers($id, Request $request){
+        try{
+
+            DB::beginTransaction();
+
+            $group = Group::find($id);
+
+            if($request->group_members){
+
+                //tentative(id)
+                foreach ($request->group_members as $key => $group_member) {
+
+                    $group->members()
+                        ->detach($group_member);
+
+                }
+
+            }
+            else{
+                throw new Exception('Group members not set');
+            }
+
+            DB::commit();
+
+            return response()
+                ->json(
+                    [
+                        'message'       =>  'Members successfully removed.'
+                    ],
+                    200
+                    );
+
+        }catch(Exception $e){
+
+            throw new Exception('Group members not set');
+
+        }
+    }
 }
