@@ -1,5 +1,7 @@
 /vendor
 /node_modules
+/Arty
+/asd
 /public/storage
 Homestead.yaml
 Homestead.json

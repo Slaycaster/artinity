@@ -1,0 +1,36 @@
+$balanced: #009688;
+$royal: #00796B;
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import "../www/lib/ionic/scss";
+.primary {
+	background-color: #4CAF50;
+}
+
+.darkprimary {
+	background-color: #00796B;
+}
+
+.lightprimary {
+	background-color: #C8E6C9;
+}
+
+.accent {
+	background-color: #FF5252;
+}
+
+.primaryText {
+	color: #212121;
+}
+
+body.platform-android {
+	font-family: Roboto, sans-serif;
+}
+
+.ionic-body.platform-android {
+	font-family: Roboto, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.tab-item,input,button,select,textarea {
+	font-family: inherit;
+}
+
