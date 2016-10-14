@@ -14,6 +14,12 @@ class Favorite extends Model
     	'int_user_id_fk'
     ];
 
+    public $hidden          =   [
+        'int_interest_id_fk',
+        'int_user_id_fk',
+        'int_user_favorite_id'
+    ];
+
     public function user(){
 
     	return $this->belongsTo('App\ApiModel\v1\User', 'int_user_id', 'int_user_id_fk');

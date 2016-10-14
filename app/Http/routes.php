@@ -16,3 +16,13 @@ Route::get('/', function () {
 });
 
 Route::resource('api/tests', 'Api\Test');
+
+Route::group(['prefix' => 'api'], function(){
+
+	Route::group(['prefix' => 'v1'], function(){
+
+		Route::resource('users', 'Api\v1\UserController');
+
+	});
+
+});

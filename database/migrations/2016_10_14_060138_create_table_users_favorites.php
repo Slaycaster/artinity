@@ -27,7 +27,7 @@ class CreateTableUsersFavorites extends Migration
                 'int_user_id_fk',
                 'int_interest_id_fk',
                 'str_favorite_name'
-                ], 'user_favorite_fk');
+                ], 'user_favorite_uq');
 
             $table->foreign('int_user_id_fk')
                 ->references('int_user_id')

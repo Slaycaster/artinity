@@ -25,7 +25,7 @@ class CreateTableUsersInterests extends Migration
             $table->unique([
                 'int_user_id_fk',
                 'int_interest_id_fk'
-                ]);
+                ], 'user_interest_uq');
 
             $table->foreign('int_user_id_fk')
                 ->references('int_user_id')
