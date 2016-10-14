@@ -1,11 +1,33 @@
 <ion-view title="Home" id="page2">
-    <ion-content padding="true" class="has-header">
-        <ion-list id="home-list3">
-            <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
+    <ion-nav-buttons side="primary">
+      <a class="button button-icon icon ion-location btn-clear" ng-click="openModal()"></a>
+    </ion-nav-buttons>
+    <ion-content padding="true" class="has-header" overflow-scroll="true">
+        <label class="item item-input" style="width: 100%;">
+                <i class="icon ion-search placeholder-icon balanced"></i>
                 <input type="search" placeholder="Search for interests, hobbies, and skills">
-            </label>
-        </ion-list>
+        </label>
+        <div class="list card" id="home-card22" style="margin-top: 15%;">
+            <ion-item class="item-avatar" id="home-list-item12">
+                <img src="img/YcCtwOh5TW6FTWBtuoza_14051555_10154020001663090_4991434035055011791_n.jpg">
+                <h2>Joyce Pring</h2>
+                <p>with Han Ainan</p>
+            </ion-item>
+            <div class=" item item-image">
+                <img src="img/jBEB56O3SyCRmAU05TIl_5th.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+            </div>
+            <div class="item item-body" id="home-list-item-container6">
+                <div id="home-markdown8" style="color:#000000;">
+                    <p style="margin-top:0px;">Stellar! :)</p>
+                </div>
+            </div>
+            <ion-item class="item-icon-left item-icon-right balanced" id="home-list-item13">
+                <i class="icon ion-android-person-add"></i>Collab
+                <span class="item-note">2</span>
+                <i class="icon ion-ios-compose"></i>
+            </ion-item>
+        </div>
+
         <div class="list card" id="home-card22">
             <ion-item class="item-avatar" id="home-list-item12">
                 <img src="img/YcCtwOh5TW6FTWBtuoza_14051555_10154020001663090_4991434035055011791_n.jpg">
@@ -28,3 +50,21 @@
         </div>
     </ion-content>
 </ion-view>
+
+<style type="text/css">
+    ::-webkit-input-placeholder {
+       color: black !important;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: white !important;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: white !important;  
+    }
+
+    :-ms-input-placeholder {  
+       color: white !important;  
+    }
+</style>

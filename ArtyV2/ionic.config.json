@@ -1,4 +1,5 @@
 {
   "name": "ArtyV2",
-  "app_id": ""
+  "app_id": "",
+  "defaultBrowser": true
 }

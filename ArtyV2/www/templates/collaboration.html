@@ -1,4 +1,7 @@
 <ion-view title="Collaboration" id="page3">
+    <ion-nav-buttons side="primary">
+      <a class="button button-icon icon ion-plus btn-clear" ng-click="openModal()"></a>
+    </ion-nav-buttons>
     <ion-content padding="true" class="has-header">
         <h5 id="collaboration-heading6" style="color:#00796B;font-weight:300;">Currently Collaborated with...</h5>
         <ion-list id="collaboration-list8">
@@ -23,3 +26,21 @@
         </ion-list>
     </ion-content>
 </ion-view>
+
+<style type="text/css">
+    ::-webkit-input-placeholder {
+       color: white !important;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: white !important;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: white !important;  
+    }
+
+    :-ms-input-placeholder {  
+       color: white !important;  
+    }
+</style>
