@@ -19,4 +19,10 @@ class Comment extends Model
 
     }//end function
 
+    public function member(){
+
+    	return $this->int_user_id_fk? $this->belongsTo('App\ApiModel\v1\User', 'int_user_id_fk', 'int_user_id') : $this->belongsTo('App\ApiModel\v1\Group', 'int_group_id_fk', 'int_group_id');
+
+    }//end function
+
 }
