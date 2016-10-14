@@ -59,16 +59,6 @@ Collab:
 	"str_collab_desc"	:	"For creating our very own Filipino version of Fake Taxi here in the Philippines."
 }
 
-Collab-Add Member
-{
-	"listToAdd"			:	[
-		{
-			"intId"				:	2,
-			"intMemberType"		:	1
-		}
-	]
-}
-
 Invite:
 {
 	"int_collab_id"				:	null,
