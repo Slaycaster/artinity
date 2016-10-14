@@ -76,6 +76,18 @@ class User extends Model
 
     }//end function
 
+    public function sent_requests(){
+
+        return $this->hasMany('App\ApiModel\v1\CollabRequest', 'int_sender_id_fk', 'int_user_id');
+
+    }//end function
+
+    public function received_requests(){
+
+        return $this->hasMany('App\ApiModel\v1\CollabRequest', 'int_receiver_id_fk', 'int_user_id');
+
+    }//end function
+
     public function getStrFullNameAttribute(){
 
     	return ucfirst($this->str_first_name).' '.ucfirst($this->str_last_name);
@@ -255,7 +267,7 @@ class User extends Model
             $collab->addMember($this->int_user_id, 1);
 
             DB::commit();
-            return $collab;
+            return $collab->int_collab_id;
 
         }catch(Exception $e){
 

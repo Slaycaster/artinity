@@ -28,9 +28,34 @@ class RequestController extends Controller
 
             }//end if
 
+            $user->sent_requests()
+                ->create([
+                    'int_receiver_id_fk'            =>  $receiverId,
+                    'int_collab_id_fk'              =>  $request->int_collaboration_id? $request->int_collaboration_id : $result,
+                    'str_collab_request_message'    =>  $request->str_request_message,
+                    'int_status'                    =>  1,
+                    'int_request_type'              =>  1
+                    ]);
+
+            DB::commit();
+            return response()
+                ->json(
+                    [
+                        'message'       =>  'Invite is successfully sent.'
+                    ],
+                    201
+                );
+
         }catch(Exception $e){
 
             DB::rollBack();
+            return response()
+                ->json(
+                    [
+                        'message'       =>  $e->getMessage()
+                    ],
+                    500
+                );
 
         }//catch
 
