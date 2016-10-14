@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use DB;
 
+use App\ApiModel\v1\Group;
 use App\ApiModel\v1\User;
 
 use Exception;
@@ -53,15 +54,18 @@ class GroupController extends Controller
 
             DB::beginTransaction();
 
-            $group = Group::create([
-                'str_group_name'    =>  $request->str_group_name,
-                'int_owner_id_fk'   =>  $request->int_owner_id_fk,
-                'str_group_desc'     =>  $request->str_group_desc
-                ]);
+            $user       =   User::find($request->int_owner_id_fk);
+
+            $group = $user->owned_groups()
+                ->create([
+                    'str_group_name'    =>  $request->str_group_name,
+                    'int_owner_id_fk'   =>  $request->int_owner_id_fk,
+                    'str_group_desc'     =>  $request->str_group_desc
+                    ]);
 
             //save himself as a member
             $group->members()
-                        ->attach($request->int_owner_id_fk);
+                ->attach($request->int_owner_id_fk);
 
             if($request->group_members){
 
