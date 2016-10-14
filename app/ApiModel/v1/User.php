@@ -255,7 +255,7 @@ class User extends Model
 
     }//end function
 
-    public function createCollab(){
+    public function createCollab($groupId){
 
         try{
 
@@ -267,7 +267,15 @@ class User extends Model
                     'int_status'            =>  1
                     ]);
 
-            $collab->addMember($this->int_user_id, 1);
+            if ($groupId){
+
+                $collab->addMember($groupId, 2);
+
+            }else{
+
+                $collab->addMember($this->int_user_id, 1);
+
+            }//end else
 
             DB::commit();
             return $collab->int_collab_id;

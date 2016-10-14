@@ -25,7 +25,7 @@ class CollabController extends Controller
         return response()
             ->json(
                 [
-                    'collabList'        =>  Collab::all()
+                    'collabList'        =>  Collab::getAllCollab()
                 ],
                 200
             );

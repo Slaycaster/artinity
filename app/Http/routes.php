@@ -37,6 +37,7 @@ Route::group(['prefix' => 'api'], function(){
 
 			Route::post('{senderId}/invites/{receiverId}', 'Api\v1\InviteController@inviteCollabUserToUser');
 			Route::post('{senderId}/invites/groups/{groupId}', 'Api\v1\InviteController@inviteCollabUserToGroup');
+
 			Route::get('{userId}/invites', 'Api\v1\InviteController@getAllInvites');
 			Route::post('{userId}/invites/{requestId}/accept', 'Api\v1\InviteController@acceptInvite');
 
@@ -48,11 +49,14 @@ Route::group(['prefix' => 'api'], function(){
 		Route::resource('users', 'Api\v1\UserController');
 
 		Route::group(['prefix' => 'groups'], function(){
+
 			Route::get('{id}/members', 'Api\v1\GroupController@getMembers');
-
 			Route::post('{id}/members/', 'Api\v1\GroupController@addMembers');
-
 			Route::delete('{id}/members/', 'Api\v1\GroupController@deleteMembers');
+
+			Route::post('{groupId}/invites/users/{userId}', 'Api\v1\InviteController@inviteCollabGroupToUser');
+			Route::post('{senderId}/invites/{receiverId}', 'Api\v1\InviteController@inviteCollabGroupToGroup');
+
 		});
 
 		Route::resource('groups', 'Api\v1\GroupController');

@@ -61,14 +61,34 @@ class CollabRequest extends Model
 
 	        if ($this->int_request_type == 1){
 
-		        $this->collab
-		        	->addMember($this->int_receiver_id_fk, 1);
+	        	if ($this->int_receiver_type == 1){
+
+			        $this->collab
+			        	->addMember($this->int_receiver_id_fk, 1);
+
+			    }//end if
+			    else{
+
+			    	$this->collab
+			        	->addMember($this->int_group_receiver_id_fk, 2);
+
+			    }//end else
 
 		    }//end if
 		    else{
 
-		    	$this->collab
-		            ->addMember($this->int_sender_id_fk, 1);
+		    	if ($this->int_sender_type == 1){
+
+			    	$this->collab
+			            ->addMember($this->int_sender_id_fk, 1);
+
+		    	}//end if
+		    	else{
+
+		    		$this->collab
+		    			->addMember($this->int_group_sender_id_fk, 2);
+
+		    	}//end else
 
 		    }//end else
 
