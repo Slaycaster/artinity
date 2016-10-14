@@ -1,8 +1,8 @@
-app.controller('homeCtrl', ['$scope', '$stateParams', '$ionicModal', 'LocationService', '$ionicPopup', 'UserService',
+app.controller('homeCtrl', ['$scope', '$stateParams', '$ionicModal', 'LocationService', '$ionicPopup', 'UserService', 'InviteService',
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal, LocationService, $ionicPopup, UserService) {
+function ($scope, $stateParams, $ionicModal, LocationService, $ionicPopup, UserService, InviteService) {
 	$ionicModal.fromTemplateUrl('templates/modal-location.html', {
 	   scope: $scope,
 	   animation: 'slide-in-up'
@@ -14,8 +14,6 @@ function ($scope, $stateParams, $ionicModal, LocationService, $ionicPopup, UserS
 
 	 UserService.getUsers()
 	 	.then(function(response) {
-	 		console.log(response);
-
 	 		$scope.users = response;
 	 	}, function(errorResponse) {
 	 		console.log(errorResponse);
@@ -72,8 +70,14 @@ function ($scope, $stateParams, $ionicModal, LocationService, $ionicPopup, UserS
 
 		  myPopup.then(function(res) {
 		      if(res) {
-		      	console.log('Tapped!', res);
-		      	console.log($scope.users[index].int_user_id);
+		      	InviteService.sendInvite($scope.users[index].int_user_id, {
+		      		str_collab_request_message: res
+		      	})
+		      		.then(function(response) {
+		      			console.log(response);
+		      		}, function(responseError) {
+		      			console.log(responseError);
+		      		});
 		      } else {
 		      	console.log('Pakshit!');
 		      }
