@@ -10,18 +10,23 @@
     </div>
      
     <ion-content style="margin-top: 20%;">
-        <ion-list id="collaboration-list8" >
-            <ion-item class="item-avatar item-icon-right" id="collaboration-list-item20" ui-sref="tabsController.collabItems">
+        <label>Individual</label>
+        <ion-list id="collaboration-list8" ng-repeat="user in users">
+            <ion-item class="item-avatar item-icon-right" id="collaboration-list-item20">
                 <img src="img/K5LgMQBtSqeM37Ji9bjA_14100509_10154028733903090_398476474469218650_n.jpg">
-                <h2>Bebelabs</h2>
-                <p>2 days ago</p>
-                <i class="icon ion-fork-repo" ng-click="showPopup(123)"></i> 
+                <h2 ng-bind="user.str_first_name + ' ' + user.str_last_name"></h2>
+                <i class="icon ion-fork-repo" ng-click="showPopup($index, 1)"></i> 
             </ion-item>
-            <ion-item class="item-avatar item-icon-right" id="collaboration-list-item23" ui-sref="tabsController.collabItems">
-                <img src="img/eJBH8alYRDWW3iiSVYGt_13901900_649670325185761_1747214589_o.jpg">
-                <h2>John Wick</h2>
-                <p>4 days ago</p>
-                <i class="icon ion-fork-repo" ng-click="showPopup(123)"></i> 
+        </ion-list>
+
+        <br>
+
+        <label>Group</label>
+        <ion-list id="collaboration-list8" ng-repeat="group in groups">
+            <ion-item class="item-avatar item-icon-right" id="collaboration-list-item20">
+                <img src="img/K5LgMQBtSqeM37Ji9bjA_14100509_10154028733903090_398476474469218650_n.jpg">
+                <h2 ng-bind="group.str_group_name"></h2>
+                <i class="icon ion-fork-repo" ng-click="showPopup($index, 2)"></i> 
             </ion-item>
         </ion-list>
       <button class="button button-block button-assertive" ng-click="closeModal()">Cancel</button>

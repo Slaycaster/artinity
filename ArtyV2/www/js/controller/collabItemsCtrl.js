@@ -1,7 +1,7 @@
-app.controller('collabItemsCtrl', ['$scope', '$stateParams', '$ionicModal',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+app.controller('collabItemsCtrl', ['$scope', '$stateParams', '$ionicModal', '$ionicPopup',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal) {
+function ($scope, $stateParams, $ionicModal, $ionicPopup) {
 
 
 	$ionicModal.fromTemplateUrl('templates/modal-addItem.html', {
@@ -31,21 +31,38 @@ function ($scope, $stateParams, $ionicModal) {
 	   // Execute action
 	 });
 
-	 scope.$on("cropme:done", function(ev, result, cropmeEl) {
-	         var blob = result.croppedImage;
-	         var xhr = new XMLHttpRequest;
-	         xhr.setRequestHeader("Content-Type", blob.type);
-	         xhr.onreadystatechange = function(e) {
-	             if (this.readyState === 4 && this.status === 200) {
-	                 return console.log("done");
-	             } else if (this.readyState === 4 && this.status !== 200) {
-	                 return console.log("failed");
-	             }
-	         };
-	         xhr.open("POST", url, true);
-	         xhr.send(blob);
-	     });
+ 	 $scope.showPopup = function(index) {
+  		 $scope.data = {};
 
+   // An elaborate, custom popup
+ 		  var myPopup = $ionicPopup.show({
+ 		    template: '<input type="text" ng-model="data.wifi">',
+ 		    title: 'Rename Collab',
+ 		    subTitle: 'Enter a cool name.',
+ 		    scope: $scope,
+ 		    buttons: [
+ 		      { text: 'Cancel' },
+ 		      {
+ 		        text: '<b>Set</b>',
+ 		        type: 'button-balanced',
+ 		        onTap: function(e) {
+ 		          if (!$scope.data.wifi) {
+ 		            //don't allow the user to close unless he enters wifi password
+ 		            e.preventDefault();
+ 		          } else {
+ 		            return $scope.data.wifi;
+ 		          }
+ 		        }
+ 		      }
+ 		    ]
+ 		  });
 
-
+ 		  myPopup.then(function(res) {
+ 		      if(res) {
+ 		      	console.log(res);
+ 		      } else {
+ 		      	console.log('Pakshit!');
+ 		      }
+ 		    });
+ 	}
 }])

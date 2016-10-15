@@ -53,6 +53,7 @@ class GroupController extends Controller
         try{
 
             DB::beginTransaction();
+            $filepath           =   null;
 
             $user       =   User::find($request->int_owner_id_fk);
             $filepath   =   null;
@@ -70,14 +71,14 @@ class GroupController extends Controller
                     'str_group_name'    =>  $request->str_group_name,
                     'int_owner_id_fk'   =>  $request->int_owner_id_fk,
                     'str_group_desc'    =>  $request->str_group_desc,
-                    "str_photo_dir"     =>  $filepath? $filepath : null
+                    "str_photo_dir"     =>  $filepath? $filepath : null,
                     ]);
 
             //save himself as a member
             $group->members()
                 ->attach($request->int_owner_id_fk);
 
-            if($request->group_members){
+            if($request->group_members) {
 
                 //tentative(id)
                 foreach ($request->group_members as $key => $group_member) {

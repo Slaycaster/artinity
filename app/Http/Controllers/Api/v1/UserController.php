@@ -51,9 +51,8 @@ class UserController extends Controller
         try{
 
             DB::beginTransaction();
-
-            $filepath       =   null;
-
+            $filepath           =   null;
+            
             //check and upload the file
             if($request->hasFile('str_photo_dir')){
                 $filename = rand(1000,100000)."-".$request->file('str_photo_dir')->getClientOriginalName();
