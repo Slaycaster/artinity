@@ -1,8 +1,11 @@
-app.controller('homeCtrl', ['$scope', '$stateParams', '$ionicModal', 'LocationService', '$ionicPopup', 'UserService', 'InviteService',
+app.controller('homeCtrl', ['$scope', '$stateParams', '$ionicModal', 'LocationService', '$ionicPopup', 'UserService', 'InviteService'
+	, 'PostService',
+
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal, LocationService, $ionicPopup, UserService, InviteService) {
+function ($scope, $stateParams, $ionicModal, LocationService, $ionicPopup, UserService, InviteService,
+	PostService) {
 	$ionicModal.fromTemplateUrl('templates/modal-location.html', {
 	   scope: $scope,
 	   animation: 'slide-in-up'
@@ -12,9 +15,16 @@ function ($scope, $stateParams, $ionicModal, LocationService, $ionicPopup, UserS
 
 	 $scope.locationForm = {};
 
-	 UserService.getUsers()
+	 // UserService.getUsers()
+	 // 	.then(function(response) {
+	 // 		$scope.users = response;
+	 // 	}, function(errorResponse) {
+	 // 		console.log(errorResponse);
+	 // 	})
+
+	 PostService.getAllPosts()
 	 	.then(function(response) {
-	 		$scope.users = response;
+	 		$scope.posts = response;
 	 	}, function(errorResponse) {
 	 		console.log(errorResponse);
 	 	})

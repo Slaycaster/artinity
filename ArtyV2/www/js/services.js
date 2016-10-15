@@ -192,4 +192,17 @@ angular.module('app.services', [])
 
         return deferred.promise;
     }
+
+    this.getAllPosts = function() {
+        var deferred = $q.defer();
+
+        $http.get(appConfig.baseUrl + 'api/v1/' + 'posts')
+            .then(function(response) {
+                deferred.resolve(response.data.postList);
+            }, function(error) {
+                deferred.reject('Error reading posts');
+            });
+
+        return deferred.promise;
+    }
 }]);
