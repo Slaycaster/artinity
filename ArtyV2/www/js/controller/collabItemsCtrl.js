@@ -1,7 +1,9 @@
-app.controller('collabItemsCtrl', ['$scope', '$stateParams', '$ionicModal', '$ionicPopup',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+app.controller('collabItemsCtrl', ['$scope', '$stateParams', '$ionicModal', '$ionicPopup',
+	'CollabService',
+// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal, $ionicPopup) {
+function ($scope, $stateParams, $ionicModal, $ionicPopup, CollabService) {
 
 
 	$ionicModal.fromTemplateUrl('templates/modal-addItem.html', {
@@ -17,6 +19,7 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup) {
 	   $scope.modal.hide();
 	 };
 
+	 $scope.collabName = CollabService.getCollabName();
 
 	 // Cleanup the modal when we're done with it!
 	 $scope.$on('$destroy', function() {
@@ -59,9 +62,17 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup) {
 
  		  myPopup.then(function(res) {
  		      if(res) {
- 		      	console.log(res);
+ 		      	CollabService.updateCollabName({
+ 		      		str_collab_name: res
+ 		      	}).then(function(response) {
+ 		      		$scope.collabName = res;
+
+ 		      		console.log(response);
+ 		      	}, function(errorResponse) {
+ 		      		console.log(errorResponse);
+ 		      	});
  		      } else {
- 		      	console.log('Pakshit!');
+ 		      	console.log('Empty input!');
  		      }
  		    });
  	}
