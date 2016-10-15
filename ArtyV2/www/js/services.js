@@ -56,6 +56,7 @@ angular.module('app.services', [])
 
 .service('InviteService', ['$http', '$q', function($http, $q) {
     this.sendInvite = function(receiverId, collabDesc, id) {
+        console.log(appConfig.userId);
         var deferred = $q.defer();
 
         $http({
