@@ -101,4 +101,12 @@ angular.module('app.services', [])
 
         return deferred.promise;
     }
+}])
+
+.service('CollabService', ['$http', '$q', function($http, $q) {
+    this.getCollabs = function() {
+        var deferred = $q.defer();
+
+        // $http.get(appConfig.baseUrl + 'api/v1/collabs')
+    }
 }]);
