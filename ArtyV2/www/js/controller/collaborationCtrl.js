@@ -31,7 +31,7 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 	 		$scope.groups = response;
 	 	}, function(errorResponse) {
 	 		console.log(errorResponse);
-	 	})
+	 	});
 
 	 $scope.openModal = function() {
 	   $scope.modal.show();
