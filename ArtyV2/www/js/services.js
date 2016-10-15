@@ -107,6 +107,13 @@ angular.module('app.services', [])
     this.getCollabs = function() {
         var deferred = $q.defer();
 
-        // $http.get(appConfig.baseUrl + 'api/v1/collabs')
+        $http.get(appConfig.baseUrl + 'api/v1/users/' + appConfig.userId + '/collabs')
+            .then(function(response) {
+                deferred.resolve(response.data.collabList);
+            }, function(error) {
+                deferred.reject('Error occurred');
+            });
+
+            return deferred.promise;
     }
 }]);
