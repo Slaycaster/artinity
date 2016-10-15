@@ -40,6 +40,8 @@ Route::group(['prefix' => 'api'], function(){
 
 		Route::group(['prefix' => 'users'], function(){
 
+			Route::get('{userId}/collabs', 'Api\v1\UserController@getAllUserCollab');
+
 			Route::post('{senderId}/invites/{receiverId}', 'Api\v1\InviteController@inviteCollabUserToUser');
 			Route::post('{senderId}/invites/groups/{groupId}', 'Api\v1\InviteController@inviteCollabUserToGroup');
 
