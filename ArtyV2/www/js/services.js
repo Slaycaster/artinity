@@ -105,6 +105,17 @@ angular.module('app.services', [])
 }])
 
 .service('CollabService', ['$http', '$q', function($http, $q) {
+    var collabName;
+    var collabId;
+
+    this.setCollabId = function(id) {
+        this.collabId = id;
+    }   
+
+    this.getCollabId = function() {
+        return this.collabId;
+    }
+
     this.getCollabs = function() {
         var deferred = $q.defer();
 
@@ -116,5 +127,69 @@ angular.module('app.services', [])
             });
 
             return deferred.promise;
+    }
+
+    this.setCollabName = function(name) {
+        this.collabName = name;
+    }
+
+    this.getCollabName = function() {
+        return this.collabName;
+    }
+
+    this.updateCollabName = function(nameObject) {
+        var deferred = $q.defer();
+
+        $http({
+            url: appConfig.baseUrl + 'api/v1/collabs/' + this.getCollabId(),
+            method: 'PUT',
+            data: $.param(nameObject),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }    
+        })
+        .then(function(response) {
+            deferred.resolve(response.data.message);
+        }, function(error) {
+            deferred.reject(error.data.message);
+        });
+
+        return deferred.promise;
+    }
+}])
+
+.service('PostService', ['$http', '$q', 'CollabService', function($http, $q, CollabService) {
+    this.savePost = function(postObject) {
+        var deferred = $q.defer();
+
+        $http({
+            url: appConfig.baseUrl + 'api/v1/collabs/' + CollabService.getCollabId() + '/posts/users/' 
+                + appConfig.userId,
+            method: 'POST',
+            data: $.param(postObject),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }    
+        })
+        .then(function(response) {
+            deferred.resolve(response.data.message);
+        }, function(error) {
+            deferred.reject(error.data.message);
+        });
+
+        return deferred.promise;
+    }
+
+    this.getPosts = function() {
+        var deferred = $q.defer();
+
+        $http.get(appConfig.baseUrl + 'api/v1/collabs/' + CollabService.getCollabId() + '/posts')
+            .then(function(response) {
+                deferred.resolve(response.data.postList);
+            }, function(error) {
+                deferred.reject('Error reading posts');
+            });
+
+        return deferred.promise;
     }
 }]);
