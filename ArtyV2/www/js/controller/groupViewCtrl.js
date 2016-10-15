@@ -1,9 +1,9 @@
 app.controller('groupViewCtrl', ['$scope', '$stateParams', '$ionicModal', 'UserService', 'InviteService',
-	'$http',
+	'$http', 'GroupService',
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal, UserService, InviteService, $http) {
+function ($scope, $stateParams, $ionicModal, UserService, InviteService, $http, GroupService) {
 
 	$scope.userForm = {};
 	 var memberList = [];
@@ -14,6 +14,15 @@ function ($scope, $stateParams, $ionicModal, UserService, InviteService, $http) 
 		}, function(errorResponse) {
 			console.log(errorResponse);
 		})
+
+	GroupService.getGroups()
+	 	.then(function(response) {
+	 		console.log(response);
+
+	 		$scope.groups = response;
+	 	}, function(errorResponse) {
+	 		console.log(errorResponse);
+	 	})
 
 	$scope.createGroupOnClick = function() {
 		memberList = [];
