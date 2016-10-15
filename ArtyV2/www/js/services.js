@@ -55,11 +55,11 @@ angular.module('app.services', [])
 }])
 
 .service('InviteService', ['$http', '$q', function($http, $q) {
-    this.sendInvite = function(receiverId, collabDesc) {
+    this.sendInvite = function(receiverId, collabDesc, id) {
         var deferred = $q.defer();
 
         $http({
-            url: appConfig.baseUrl + 'api/v1/users/' + appConfig.userId + '/invites/' + receiverId,
+            url: appConfig.baseUrl + 'api/v1/users/' + appConfig.userId + '/invites/' + (id == 1 ? receiverId : 'groups/' + receiverId),
             method: 'POST',
             data: $.param(collabDesc),
             headers: {
@@ -80,6 +80,21 @@ angular.module('app.services', [])
         $http.get(appConfig.baseUrl + 'api/v1/users/' + appConfig.userId + '/invites')
             .then(function(response) {
                 deferred.resolve(response.data.inviteList);
+            }, function(error) {
+                deferred.reject(error.data);
+            });
+
+        return deferred.promise;
+    }
+}])
+
+.service('GroupService', ['$http', '$q', function($http, $q) {
+    this.getGroups = function() {
+        var deferred = $q.defer();
+
+        $http.get(appConfig.baseUrl + 'api/v1/groups')
+            .then(function(response) {
+                deferred.resolve(response.data.groupList);
             }, function(error) {
                 deferred.reject(error.data);
             });

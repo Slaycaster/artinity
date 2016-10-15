@@ -52,17 +52,16 @@ Group:
 	"group_members" : ["2"]
 }
 
-Collab:
-{
-	"int_user_id"		:	1,
-	"str_collab_name"	:	"Collab for Fake Taxi v1.0",
-	"str_collab_desc"	:	"For creating our very own Filipino version of Fake Taxi here in the Philippines."
-}
-
 Invite:
 {
 	"int_collab_id"				:	null,
 	"str_collab_request_message"	:	"Hello, join me!"
+}
+
+Collab(update)
+{
+	"str_collab_name" : "asdda",
+	"str_collab_desc" : "asdsaddasd"
 }
 
 Post:

@@ -1,9 +1,9 @@
 app.controller('collaborationCtrl', ['$scope', '$stateParams', '$ionicModal', '$ionicPopup',
-	'UserService', '$http', 'InviteService',
+	'UserService', '$http', 'InviteService', 'GroupService',
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, InviteService) {
+function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, InviteService, GroupService) {
 	$ionicModal.fromTemplateUrl('templates/modal-add.html', {
 	   scope: $scope,
 	   animation: 'slide-in-up'
@@ -20,6 +20,15 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 	 		console.log(response);
 
 	 		$scope.users = response;
+	 	}, function(errorResponse) {
+	 		console.log(errorResponse);
+	 	})
+
+	 GroupService.getGroups()
+	 	.then(function(response) {
+	 		console.log(response);
+
+	 		$scope.groups = response;
 	 	}, function(errorResponse) {
 	 		console.log(errorResponse);
 	 	})
@@ -104,7 +113,7 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 	    // Execute action
 	  });
 
-	  	 $scope.showPopup = function(index) {
+	  	 $scope.showPopup = function(index, userTypeId) {
 	   		 $scope.data = {};
 
 	    // An elaborate, custom popup
@@ -132,9 +141,9 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 
 	  		  myPopup.then(function(res) {
 	  		      if(res) {
-	  		      	InviteService.sendInvite($scope.users[index].int_user_id, {
+	  		      	InviteService.sendInvite((userTypeId == 1 ? $scope.users[index].int_user_id : $scope.groups[index].int_group_id), {
 	  		      		str_collab_request_message: res
-	  		      	})
+	  		      	}, userTypeId)
 	  		      		.then(function(response) {
 	  		      			console.log(response);
 	  		      		}, function(responseError) {
