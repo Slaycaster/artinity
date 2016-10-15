@@ -156,4 +156,40 @@ angular.module('app.services', [])
 
         return deferred.promise;
     }
+}])
+
+.service('PostService', ['$http', '$q', 'CollabService', function($http, $q, CollabService) {
+    this.savePost = function(postObject) {
+        var deferred = $q.defer();
+
+        $http({
+            url: appConfig.baseUrl + 'api/v1/collabs/' + CollabService.getCollabId() + '/posts/users/' 
+                + appConfig.userId,
+            method: 'POST',
+            data: $.param(postObject),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }    
+        })
+        .then(function(response) {
+            deferred.resolve(response.data.message);
+        }, function(error) {
+            deferred.reject(error.data.message);
+        });
+
+        return deferred.promise;
+    }
+
+    this.getPosts = function() {
+        var deferred = $q.defer();
+
+        $http.get(appConfig.baseUrl + 'api/v1/collabs/' + CollabService.getCollabId() + '/posts')
+            .then(function(response) {
+                deferred.resolve(response.data.postList);
+            }, function(error) {
+                deferred.reject('Error reading posts');
+            });
+
+        return deferred.promise;
+    }
 }]);

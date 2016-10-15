@@ -8,14 +8,10 @@
               <div class="col col-75"><h3 style="color:black;font-weight:300;" ng-bind="collabName">---</h3></div>
               <div class="col col-25"><a class="button button-icon icon ion-edit btn-clear balanced" ng-click="showPopup()"></a></div>
           </div>
-             <ion-item class="item-thumbnail-left" id="collaboration-list-item28"  ui-sref="tabsController.collabView">
-                <img src="img/qaYexNRhRUeNSlEhJCH3_13918499_649670328519094_211304774_o.jpg">
-                <h2>Heads x Toes</h2>
-                <p style="white-space:normal;">asdfasdfasdfasdfasdfasdfasdasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</p>
-            </ion-item>
-             <ion-item class="item-icon-left" id="collaboration-list-item28"  ui-sref="tabsController.collabView">
-                <i class="icon ion-music-note" ng-click="showPopup(123)"></i>                <h2>Item</h2>
-                <p style="white-space:normal;">asdfasdfasdfasdfasdfasdfasdasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</p>
+             <ion-item class="item-icon-left" id="collaboration-list-item28"  ui-sref="tabsController.collabView" ng-repeat="post in posts">
+                <i class="icon ion-music-note" ng-click="showPopup(123)"></i>    
+                <h2 ng-bind="post.member.str_first_name + ' ' + post.member.str_last_name"></h2>       
+                <p style="white-space:normal;" ng-bind="post.str_post_message"></p>
             </ion-item>
 
         </ion-list>

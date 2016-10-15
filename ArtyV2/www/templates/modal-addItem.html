@@ -5,11 +5,10 @@
 
      
     <ion-content>
-    <form>
-        
     <h5 id="collaboration-heading6" style="color:#00796B;font-weight:300; margin-left: 10px;">File Upload</h5>
+      <form ng-submit="postOnSubmit()">
       <img src="">
-    <cropme
+      <cropme
            width="250"
            height="250"
            ratio="1"
@@ -27,17 +26,13 @@
 
       <div class="list">
         <label class="item item-input" id="signup-input3">
-            <span class="input-label">Collaboration Name</span>
+            <span class="input-label">Message</span>
             <input type="text" placeholder="" required="required" ng-model="userForm.collabName">
         </label>
-        <label class="item item-input" id="signup-input3">
-            <span class="input-label">Description</span>
-            <input type="text" placeholder="" required="required" ng-model="userForm.desc">
-        </label>
       </div>
-      <button class="button button-block button-balanced" ng-click="" type="submit">Add</button>
-       </form>
+      <button class="button button-block button-balanced"  type="submit">Add</button>
       <button class="button button-outline button-block button-assertive" ng-click="closeModal()">Cancel</button>
+      </form>
     </ion-content>
   </ion-modal-view>
 
