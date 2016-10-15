@@ -69,3 +69,8 @@ Post:
 	"str_post_message"		:	"Habadu...",
 	"int_post_type"			:	1
 }
+
+Comment:
+{
+	"str_comment_message"		:	"Habadu..."
+}

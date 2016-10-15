@@ -62,6 +62,7 @@ class PostController extends Controller
 
     		}//end if
 
+    		$filepath 			=	null;
 
             //check and upload the file
             if($request->hasFile('str_attachment_dir')){
@@ -77,8 +78,7 @@ class PostController extends Controller
     				'int_group_id_fk'			=>	$boolGroup? $userGroup->int_group_id : null,
     				'str_post_message'			=>	$request->str_post_message,
     				'int_post_type'				=>	$request->int_post_type,
-    				'str_attachment_dir'		=>	$filepath? $filepath : null,
-    				'int_user_id_fk'			=>	$intUserId
+    				'str_attachment_dir'		=>	$filepath? $filepath : null
     				]);
 
     		DB::commit();

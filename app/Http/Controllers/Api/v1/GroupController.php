@@ -56,6 +56,7 @@ class GroupController extends Controller
             $filepath           =   null;
 
             $user       =   User::find($request->int_owner_id_fk);
+            $filepath   =   null;
 
             //check and upload the file
             if($request->hasFile('str_photo_dir')){

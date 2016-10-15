@@ -9,7 +9,8 @@ class Comment extends Model
     public $primaryKey 		=	'int_comment_id';
     public $fillable		=	[
     	'int_post_id_fk',
-    	'int_collab_member_id_fk',
+    	'int_user_id_fk',
+    	'int_group_id_fk',
     	'str_comment_message'
     ];
 
