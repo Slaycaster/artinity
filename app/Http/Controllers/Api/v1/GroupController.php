@@ -77,7 +77,7 @@ class GroupController extends Controller
             $group->members()
                 ->attach($request->int_owner_id_fk);
 
-            if($request->group_members){
+            if($request->group_members) {
 
                 //tentative(id)
                 foreach ($request->group_members as $key => $group_member) {

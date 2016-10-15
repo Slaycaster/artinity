@@ -1,7 +1,9 @@
-app.controller('collaborationCtrl', ['$scope', '$stateParams', '$ionicModal', '$ionicPopup',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+app.controller('collaborationCtrl', ['$scope', '$stateParams', '$ionicModal', '$ionicPopup',
+	'UserService', '$http', 'InviteService',
+// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal, $ionicPopup) {
+function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, InviteService) {
 	$ionicModal.fromTemplateUrl('templates/modal-add.html', {
 	   scope: $scope,
 	   animation: 'slide-in-up'
@@ -10,6 +12,14 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup) {
 	 });
 
 	 $scope.location = appConfig.location;
+	 $scope.userForm = {};
+
+	 UserService.getUsers()
+	 	.then(function(response) {
+	 		$scope.users = response;
+	 	}, function(errorResponse) {
+	 		console.log(errorResponse);
+	 	})
 
 	 $scope.openModal = function() {
 	   $scope.modal.show();
@@ -19,6 +29,26 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup) {
 
 	   $scope.modal.hide();
 	 };
+
+	 $scope.createGroupOnClick = function() {
+	 	$http({
+	 		url: appConfig.baseUrl + 'api/v1/groups',
+	 		method: 'POST',
+	 		data: $.param({
+	 			str_group_name: $scope.userForm.groupName,
+	 			int_owner_id_fk: appConfig.userId,
+	 			str_group_desc: ''
+	 		}),
+	 		headers: {
+	 			'Content-Type': 'application/x-www-form-urlencoded'
+	 		}
+	 	}).then(function(response) {
+	 		console.log(response.data.message);
+	 	}, function(error) {
+	 		console.log(error.data.message);
+	 	});
+	 }
+
 	 // Cleanup the modal when we're done with it!
 	 $scope.$on('$destroy', function() {
 	   $scope.modal.remove();

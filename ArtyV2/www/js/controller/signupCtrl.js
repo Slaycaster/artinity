@@ -7,8 +7,8 @@ function ($scope, $stateParams, $http) {
 	$scope.userForm = {};
 
 	$scope.signUpOnSubmit = function() {
-		var file = document.getElementById('cropme1');
-
+		var file = document.getElementById('avatar-input');
+		
 		$http({
 			url: appConfig.baseUrl + 'api/v1/users',
 			method: 'POST',
@@ -21,7 +21,8 @@ function ($scope, $stateParams, $http) {
 				dbl_location_long: appConfig.latLng.lng,
 				str_email: $scope.userForm.email,
 				str_password: $scope.userForm.password,
-				int_gender: $scope.userForm.gender
+				int_gender: $scope.userForm.gender,
+				str_photo_dir: file.files[0]
 			}),
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
@@ -35,18 +36,18 @@ function ($scope, $stateParams, $http) {
 		})
 	};
 
-	$scope.$on("cropme:done", function(ev, result, cropmeEl) {
-	        var blob = result.croppedImage;
-	        var xhr = new XMLHttpRequest;
-	        xhr.setRequestHeader("Content-Type", blob.type);
-	        xhr.onreadystatechange = function(e) {
-	            if (this.readyState === 4 && this.status === 200) {
-	                return console.log("done");
-	            } else if (this.readyState === 4 && this.status !== 200) {
-	                return console.log("failed");
-	            }
-	        };
-	        xhr.open("POST", url, true);
-	        xhr.send(blob);
-	    });
+	// $scope.$on("cropme:done", function(ev, result, cropmeEl) {
+	//         var blob = result.croppedImage;
+	//         var xhr = new XMLHttpRequest;
+	//         xhr.setRequestHeader("Content-Type", blob.type);
+	//         xhr.onreadystatechange = function(e) {
+	//             if (this.readyState === 4 && this.status === 200) {
+	//                 return console.log("done");
+	//             } else if (this.readyState === 4 && this.status !== 200) {
+	//                 return console.log("failed");
+	//             }
+	//         };
+	//         xhr.open("POST", url, true);
+	//         xhr.send(blob);
+	//     });
 }])
