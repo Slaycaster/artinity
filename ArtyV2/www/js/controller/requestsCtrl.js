@@ -5,8 +5,6 @@ app.controller('requestsCtrl', ['$scope', '$stateParams', 'InviteService', '$htt
 function ($scope, $stateParams, InviteService, $http) {
 	InviteService.getInvites()
 		.then(function(response) {
-			console.log('fhdkjsfjdsklfjdsklfjkldsjfklds ', response);
-
 			$scope.requests = response;
 			console.log($scope.requests);
 		}, function(responseError) {

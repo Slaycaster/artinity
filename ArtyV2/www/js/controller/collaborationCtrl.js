@@ -1,9 +1,10 @@
 app.controller('collaborationCtrl', ['$scope', '$stateParams', '$ionicModal', '$ionicPopup',
-	'UserService', '$http', 'InviteService', 'GroupService',
+	'UserService', '$http', 'InviteService', 'GroupService', 'CollabService',
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, InviteService, GroupService) {
+function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, InviteService, GroupService,
+	CollabService) {
 	$ionicModal.fromTemplateUrl('templates/modal-add.html', {
 	   scope: $scope,
 	   animation: 'slide-in-up'
@@ -32,6 +33,15 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 	 	}, function(errorResponse) {
 	 		console.log(errorResponse);
 	 	});
+
+	 CollabService.getCollabs()
+	 	.then(function(response) {
+	 		console.log(response);
+
+	 		$scope.collabs = response;
+	 	}, function(errorResponse) {
+	 		console.log(errorResponse);
+	 	})
 
 	 $scope.openModal = function() {
 	   $scope.modal.show();
