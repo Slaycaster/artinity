@@ -242,7 +242,7 @@ class InviteController extends Controller
 
     }//end function
 
-    public function getAllGroupInvites($groupId, $requestId){
+    public function getAllGroupInvites($groupId){
 
         return response()
             ->json(
