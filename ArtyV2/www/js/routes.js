@@ -58,10 +58,10 @@ angular.module('app.routes', [])
     controller: 'signupCtrl'
   })
 
-  .state('tutorView', {
-    url: '/tutorView',
-    templateUrl: 'templates/tutorView.html',
-    controller: 'tutorViewCtrl'
+  .state('groupView', {
+    url: '/grouView',
+    templateUrl: 'templates/groupView.html',
+    controller: 'groupViewCtrl'
   })
 
   .state('tabsController.collabView', {
