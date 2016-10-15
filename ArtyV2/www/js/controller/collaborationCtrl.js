@@ -13,9 +13,12 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 
 	 $scope.location = appConfig.location;
 	 $scope.userForm = {};
+	 var memberList = [];
 
 	 UserService.getUsers()
 	 	.then(function(response) {
+	 		console.log(response);
+
 	 		$scope.users = response;
 	 	}, function(errorResponse) {
 	 		console.log(errorResponse);
@@ -31,13 +34,22 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 	 };
 
 	 $scope.createGroupOnClick = function() {
+	 	memberList = [];
+
+	 	for(var i = 0; i < $scope.users.length; i++) {
+	 		if($scope.userForm.users[i]) {
+	 			memberList.push($scope.users[i].int_user_id);
+	 		}
+	 	}
+
 	 	$http({
 	 		url: appConfig.baseUrl + 'api/v1/groups',
 	 		method: 'POST',
 	 		data: $.param({
 	 			str_group_name: $scope.userForm.groupName,
 	 			int_owner_id_fk: appConfig.userId,
-	 			str_group_desc: ''
+	 			str_group_desc: '',
+	 			group_members : memberList
 	 		}),
 	 		headers: {
 	 			'Content-Type': 'application/x-www-form-urlencoded'
