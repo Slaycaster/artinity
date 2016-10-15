@@ -355,4 +355,18 @@ class User extends Model
         return $invite;
 
     }//end function
+
+    public function getAllUserCollab(){
+
+        $collabList         =   $this->collabs;
+
+        foreach($collabList as $collab){
+
+            $collab->owner;
+
+        }//end foreach
+
+        return $collabList;
+
+    }//end function
 }

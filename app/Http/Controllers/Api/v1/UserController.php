@@ -219,4 +219,20 @@ class UserController extends Controller
     {
         //
     }
+
+    public function getAllUserCollab($userId){
+
+        $collabList         =   User::find($userId)
+            ->getAllUserCollab();
+
+        return response()
+            ->json(
+                [
+                    'collabList'        =>  $collabList
+                ],
+                200
+            );
+
+    }//end function
+
 }
