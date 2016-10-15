@@ -18,7 +18,7 @@ class Post extends Model
 
     public function collab(){
 
-    	return $this->belongsTo('App\ApiModel\v1\Collab', 'int_collab_id', 'int_collab_id_fk');
+    	return $this->belongsTo('App\ApiModel\v1\Collab', 'int_collab_id_fk', 'int_collab_id');
 
     }//end function
 

@@ -60,6 +60,8 @@ Route::group(['prefix' => 'api'], function(){
 		Route::resource('collabs', 'Api\v1\CollabController');
 		Route::resource('users', 'Api\v1\UserController');
 
+		Route::get('posts', 'Api\v1\PostController@getAllPosts');
+
 		Route::group(['prefix' => 'groups'], function(){
 
 			Route::get('{id}/members', 'Api\v1\GroupController@getMembers');

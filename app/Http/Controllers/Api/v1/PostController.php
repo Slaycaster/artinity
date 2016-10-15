@@ -11,10 +11,32 @@ use DB;
 use Exception;
 
 use App\ApiModel\v1\Collab;
+use App\ApiModel\v1\Post;
 use App\ApiModel\v1\User;
 
 class PostController extends Controller
 {
+    public function getAllPosts(){
+
+        $postList           =   Post::all();
+
+        foreach($postList as $post){
+
+            $post->member;
+            $post->collab;
+
+        }//end ofreach
+
+        return response()
+            ->json(
+                [
+                    'postList'      =>  $postList
+                ],
+                200
+            );
+
+    }//end function
+
     public function savePost($collabId, $userId, Request $request){
 
     	try{
