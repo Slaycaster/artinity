@@ -294,6 +294,8 @@ class User extends Model
 
         $inviteList         =   $this->received_requests()
             ->where('int_request_type', '=', 1)
+            ->where('int_status', '!=', 3)
+            ->where('int_status', '!=', 4)
             ->get();
 
         foreach($inviteList as $invite){
@@ -325,6 +327,8 @@ class User extends Model
 
         $inviteList         =   $this->received_requests()
             ->where('int_request_type', '=', 2)
+            ->where('int_status', '!=', 3)
+            ->where('int_status', '!=', 4)
             ->get();
 
         foreach($inviteList as $invite){
