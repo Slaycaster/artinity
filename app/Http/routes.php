@@ -33,6 +33,8 @@ Route::group(['prefix' => 'api'], function(){
 
 			Route::post('{collabId}/posts/users/{userId}', 'Api\v1\PostController@savePost');
 			Route::get('{collabId}/posts', 'Api\v1\PostController@getAllPost');
+			Route::post('{collabId}/posts/{postId}/comments/users/{userId}', 'Api\v1\CommentController@saveComment');
+			Route::get('{collabId}/posts/{postId}/comments', 'Api\v1\CommentController@getAllComment');
 
 		});
 

@@ -55,6 +55,7 @@ class GroupController extends Controller
             DB::beginTransaction();
 
             $user       =   User::find($request->int_owner_id_fk);
+            $filepath   =   null;
 
             //check and upload the file
             if($request->hasFile('str_photo_dir')){
@@ -69,7 +70,7 @@ class GroupController extends Controller
                     'str_group_name'    =>  $request->str_group_name,
                     'int_owner_id_fk'   =>  $request->int_owner_id_fk,
                     'str_group_desc'    =>  $request->str_group_desc,
-                    "str_photo_dir"     =>  $filepath
+                    "str_photo_dir"     =>  $filepath? $filepath : null
                     ]);
 
             //save himself as a member
