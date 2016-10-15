@@ -8,6 +8,7 @@ function ($scope, $stateParams, InviteService, $http) {
 			console.log('fhdkjsfjdsklfjdsklfjkldsjfklds ', response);
 
 			$scope.requests = response;
+			console.log($scope.requests);
 		}, function(responseError) {
 			console.log(responseError);
 		});
@@ -21,8 +22,22 @@ function ($scope, $stateParams, InviteService, $http) {
 			}
 		}).then(function(response) {
 			console.log(response.data.message);
+			$scope.showAlert();
 		}, function(errorResponse) {
 			console.log(errorResponse.data.message);	
 		})
 	}
+
+	$scope.showAlert = function() {
+	   var alertPopup = $ionicPopup.alert({
+	     title: 'Invitation Accepted!',
+	     template: 'Have some fun!'
+	   });
+
+	   alertPopup.then(function(res) {
+	     console.log('Thank you for not eating my delicious ice cream cone');
+	     $state.go('tabsController.collaboration');
+	   });
+
+	  
 }]);
