@@ -13,9 +13,12 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 
 	 $scope.location = appConfig.location;
 	 $scope.userForm = {};
+	 var memberList = [];
 
 	 UserService.getUsers()
 	 	.then(function(response) {
+	 		console.log(response);
+
 	 		$scope.users = response;
 	 	}, function(errorResponse) {
 	 		console.log(errorResponse);
@@ -29,8 +32,6 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 
 	   $scope.modal.hide();
 	 };
-
-	
 
 	 // Cleanup the modal when we're done with it!
 	 $scope.$on('$destroy', function() {
