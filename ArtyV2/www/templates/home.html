@@ -11,12 +11,12 @@
         <div class="list card" id="home-card22" style="margin-top: 5%;" ng-repeat="post in posts">
             <ion-item class="item-avatar item-icon-right balanced" id="home-list-item12">
                 <img src="img/YcCtwOh5TW6FTWBtuoza_14051555_10154020001663090_4991434035055011791_n.jpg">
-                <h2 ng-bind="post.member.str_first_name + ' ' + post.member.str_middle_name + ' ' + post.member.str_last_name + ' > ' + post.collab.str_collab_name"></h2>
-                <p>with Han Ainan</p>
+                <h2 ng-bind="post.member.str_first_name + ' ' + post.member.str_middle_name + ' ' + post.member.str_last_name"></h2>
+                <p ng-bind="post.collab.str_collab_name"></p>
                 <i class="icon ion-fork-repo" ng-click="showPopup($index)"></i> 
             </ion-item>
-            <div class=" item item-image">
-                <img src="img/jBEB56O3SyCRmAU05TIl_5th.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+            <div class=" item">
+                <h2 ng-bind="post.str_post_message"></h2>
             </div>
             <div class="item item-body" id="home-list-item-container6">
                 <div id="home-markdown8" style="color:#000000;">
@@ -37,34 +37,7 @@
             </ion-item>
         </div>
 
-         <div class="list card" id="home-card22" style="margin-top: 5%;" ng-repeat="user in users">
-            <ion-item class="item-avatar item-icon-right balanced" id="home-list-item12">
-                <img src="img/YcCtwOh5TW6FTWBtuoza_14051555_10154020001663090_4991434035055011791_n.jpg">
-                <h2 ng-bind="user.str_first_name + ' ' + user.str_middle_name + ' ' + user.str_last_name"></h2>
-                <p>with Han Ainan</p>
-                <i class="icon ion-fork-repo" ng-click="showPopup($index)"></i> 
-            </ion-item>
-            <div class=" item item-image">
-                <img src="img/xCJo49gQPSGVhFD66Uyw_14051555_10154020001663090_4991434035055011791_n.jpg" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
-            </div>
-            <div class="item item-body" id="home-list-item-container6">
-                <div id="home-markdown8" style="color:#000000;">
-                    <p style="margin-top:0px; font-weight: bold; color: #387ef5;" ng-show="!hasComment" ng-click="hasComment=true">1 comment</p>
-                    <p style="margin-top:0px; font-weight: bold; color: #e42112" ng-show="hasComment" ng-click="hasComment=false">Hide comment</p>
-                </div>
-            </div>
-            <ion-item class="item-avatar-left item-icon-right balanced" id="home-list-item13" ng-show="hasComment">
-                 <img src="img/YcCtwOh5TW6FTWBtuoza_14051555_10154020001663090_4991434035055011791_n.jpg">
-                <p>Beautiful work!</p>
-            </ion-item>
-            <ion-item class="item-avatar-left item-icon-right balanced" id="home-list-item13">
-                 <img src="img/YcCtwOh5TW6FTWBtuoza_14051555_10154020001663090_4991434035055011791_n.jpg">
-                <label class="item item-input">
-                    <input type="text" placeholder="Leave a comment">
-                </label>
-                <i class="icon ion-paper-airplane"></i>
-            </ion-item>
-        </div>
+         
     </ion-content>
 </ion-view>
 
