@@ -1,6 +1,6 @@
 <ion-view title="Requests" id="page4">
     <ion-content padding="true" class="has-header" ng-repeat="request in requests">
-        <ion-list id="requests-list11" ng-if="">
+        <ion-list id="requests-list11" ng-if="request.int_status == 1 || request.int_status == 2">
             <ion-item class="item-avatar" id="requests-list-item24">
                 <img src="img/MyzGGVCSRlew2Kjymvkw_WIN_20160822_12_05_49_Pro.jpg">
                 <h2 ng-bind="request.sender.str_first_name + ' ' + request.sender.str_middle_name + ' ' + request.sender.str_last_name"></h2>

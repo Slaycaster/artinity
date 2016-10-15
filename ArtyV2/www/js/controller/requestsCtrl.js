@@ -1,10 +1,12 @@
-app.controller('requestsCtrl', ['$scope', '$stateParams', 'InviteService', '$http',
+app.controller('requestsCtrl', ['$scope', '$stateParams', 'InviteService', '$http', '$state', '$ionicPopup',
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, InviteService, $http) {
+function ($scope, $stateParams, InviteService, $http, $state, $ionicPopup) {
 	InviteService.getInvites()
 		.then(function(response) {
+			console.log('fhdkjsfjdsklfjdsklfjkldsjfklds ', response);
+
 			$scope.requests = response;
 			console.log($scope.requests);
 		}, function(responseError) {
@@ -24,7 +26,7 @@ function ($scope, $stateParams, InviteService, $http) {
 		}, function(errorResponse) {
 			console.log(errorResponse.data.message);	
 		})
-	}
+	};
 
 	$scope.showAlert = function() {
 	   var alertPopup = $ionicPopup.alert({
@@ -36,6 +38,5 @@ function ($scope, $stateParams, InviteService, $http) {
 	     console.log('Thank you for not eating my delicious ice cream cone');
 	     $state.go('tabsController.collaboration');
 	   });
-
-	  
+	 };
 }]);
