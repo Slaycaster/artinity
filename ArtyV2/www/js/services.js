@@ -56,6 +56,7 @@ angular.module('app.services', [])
 
 .service('InviteService', ['$http', '$q', function($http, $q) {
     this.sendInvite = function(receiverId, collabDesc, id) {
+        console.log(appConfig.userId);
         var deferred = $q.defer();
 
         $http({
@@ -100,5 +101,20 @@ angular.module('app.services', [])
             });
 
         return deferred.promise;
+    }
+}])
+
+.service('CollabService', ['$http', '$q', function($http, $q) {
+    this.getCollabs = function() {
+        var deferred = $q.defer();
+
+        $http.get(appConfig.baseUrl + 'api/v1/users/' + appConfig.userId + '/collabs')
+            .then(function(response) {
+                deferred.resolve(response.data.collabList);
+            }, function(error) {
+                deferred.reject('Error occurred');
+            });
+
+            return deferred.promise;
     }
 }]);
