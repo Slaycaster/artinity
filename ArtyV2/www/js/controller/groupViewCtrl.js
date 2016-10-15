@@ -1,7 +1,12 @@
-app.controller('groupViewCtrl', ['$scope', '$stateParams', '$ionicModal', 'UserService', 'InviteService',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+app.controller('groupViewCtrl', ['$scope', '$stateParams', '$ionicModal', 'UserService', 'InviteService',
+	'$http',
+// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $ionicModal, UserService, InviteService) {
+function ($scope, $stateParams, $ionicModal, UserService, InviteService, $http) {
+
+	$scope.userForm = {};
+	 var memberList = [];
 
 	UserService.getUsers()
 		.then(function(response) {
@@ -11,13 +16,22 @@ function ($scope, $stateParams, $ionicModal, UserService, InviteService) {
 		})
 
 	$scope.createGroupOnClick = function() {
+		memberList = [];
+ 
+ 	 	for(var i = 0; i < $scope.users.length; i++) {
+ 	 		if($scope.userForm.users[i]) {
+ 	 			memberList.push($scope.users[i].int_user_id);
+ 	 		}
+ 	 	}
+
 		$http({
 			url: appConfig.baseUrl + 'api/v1/groups',
 			method: 'POST',
 			data: $.param({
 				str_group_name: $scope.userForm.groupName,
 				int_owner_id_fk: appConfig.userId,
-				str_group_desc: ''
+				str_group_desc: '',
+				group_members : memberList
 			}),
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'

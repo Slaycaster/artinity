@@ -54,8 +54,8 @@ function ($scope, $stateParams, $ionicModal, $ionicPopup, UserService, $http, In
 	 $scope.$on('modal.removed', function() {
 	   // Execute action
 	 });
-	  	 $scope.showPopup = function(index) {
-	   		 $scope.data = {};
+	  	 $scope.showPopup = function(index) {	   		 
+	  	 	$scope.data = {};
 
 	    // An elaborate, custom popup
 	  		  var myPopup = $ionicPopup.show({
