@@ -62,7 +62,7 @@ class User extends Model
 
     public function groups(){
 
-        return $this->belongsToMany('App\ApiModel\v1\Group', 'group_users', 'int_user_id_fk', 'int_group_id_fk');
+        return $this->belongsToMany('App\ApiModel\v1\Group', 'groups_users', 'int_user_id_fk', 'int_group_id_fk');
 
     }//end function
 
@@ -360,13 +360,29 @@ class User extends Model
 
         $collabList         =   $this->collabs;
 
-        foreach($collabList as $collab){
+        $groupList = $this->groups;
 
-            $collab->owner;
+        $arrCollabList      =   array();
+
+        foreach($groupList as $group){
+
+            foreach($group->collabs as $collab){
+
+                $collab->owner;
+                array_push($arrCollabList, $collab);
+
+            }//end foreach
 
         }//end foreach
 
-        return $collabList;
+        foreach($collabList as $collab){
+
+            $collab->owner;
+            array_push($arrCollabList, $collab);
+
+        }//end foreach
+
+        return $arrCollabList;
 
     }//end function
 }

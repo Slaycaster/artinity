@@ -23,10 +23,20 @@ class GroupController extends Controller
      */
     public function index()
     {
+
+        $groupList      =   Group::all();
+
+        foreach($groupList as $group){
+
+            $group->owner;
+            $group->members;
+
+        }//end foreach
+
         return response()
             ->json(
                 [
-                    'groupList'      =>  Group::all()
+                    'groupList'      =>  $groupList
                 ],
                 200
             );
